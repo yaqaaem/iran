@@ -1,379 +1,374 @@
-<!doctype html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>جمع‌آوری کمک‌های مردمی به انقلاب اسلامی ایران</title>
-  <link rel="stylesheet" href="./style.css" />
-</head>
-<body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-  <div class="bg-orb orb-3"></div>
-  <div class="bg-grid"></div>
+:root {
+  --bg: #f4f7ff;
+  --panel: rgba(255,255,255,0.82);
+  --panel-strong: #ffffff;
+  --text: #172336;
+  --muted: #6d7890;
+  --line: #dce5f2;
+  --primary: #2563eb;
+  --primary-2: #1d4ed8;
+  --primary-soft: rgba(37,99,235,0.10);
+  --green: #16a34a;
+  --green-soft: rgba(22,163,74,0.10);
+  --gold: #d99a00;
+  --gold-soft: rgba(217,154,0,0.12);
+  --shadow: 0 24px 60px rgba(15, 32, 62, 0.08);
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+}
 
-  <main class="app-shell">
-    <header class="topbar">
-      <div class="lang-switcher-wrap">
-        <div class="lang-switcher" dir="ltr" id="langSwitcher">
-          <button class="lang-btn active" data-lang="fa"><span class="flag">🇮🇷</span><span>فارسی</span></button>
-          <button class="lang-btn" data-lang="ar"><span class="flag">🇮🇶</span><span>العربية</span></button>
-          <button class="lang-btn" data-lang="en"><span class="flag">🇺🇸</span><span>English</span></button>
-          <button class="lang-btn" data-lang="ur"><span class="flag">🇵🇰</span><span>اردو</span></button>
-          <button class="lang-btn" data-lang="fr"><span class="flag">🇫🇷</span><span>Français</span></button>
-          <button class="lang-btn" data-lang="de"><span class="flag">🇩🇪</span><span>Deutsch</span></button>
-          <button class="lang-btn" data-lang="es"><span class="flag">🇪🇸</span><span>Español</span></button>
-          <button class="lang-btn" data-lang="pt"><span class="flag">🇧🇷</span><span>Português</span></button>
-          <button class="lang-btn" data-lang="tr"><span class="flag">🇹🇷</span><span>Türkçe</span></button>
-        </div>
-      </div>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
 
-      <section class="hero-banner glass">
-        <div class="banner-layer banner-layer-1"></div>
-        <div class="banner-layer banner-layer-2"></div>
-        <div class="banner-pattern"></div>
+.bg {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-a {
+  width: 380px; height: 380px; left: -80px; top: -100px;
+  background: radial-gradient(circle, rgba(37,99,235,0.18), rgba(37,99,235,0.02) 65%, transparent 100%);
+}
+.bg-b {
+  width: 420px; height: 420px; right: -120px; top: 220px;
+  background: radial-gradient(circle, rgba(22,163,74,0.14), rgba(22,163,74,0.02) 65%, transparent 100%);
+}
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
+}
 
-        <div class="banner-content">
-          <div class="hero-badge" id="heroBadge">پلتفرم حمایتی چندزبانه</div>
+.shell {
+  width: min(1240px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 22px 0 36px;
+  position: relative;
+  z-index: 1;
+}
 
-          <div class="hero-ribbon">
-            <span class="ribbon-dot"></span>
-            <span id="heroRibbonText">حمایت مردمی، همبستگی جهانی، مسیرهای پرداخت متنوع</span>
-          </div>
+.card, .card-soft {
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.card-soft { border-radius: 999px; }
 
-          <h1 id="title">جمع‌آوری کمکهای مردمی به انقلاب اسلامی ایران</h1>
-          <p id="subtitle">برای حمایت، مبلغ مورد نظر و وکیل دریافت‌کننده را انتخاب کنید.</p>
+.lang-bar {
+  padding: 12px;
+  margin-bottom: 18px;
+}
+.lang-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  direction: ltr;
+}
+.lang-switcher * { direction: ltr; }
+.lang-btn {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  min-width: 108px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  transition: .2s ease;
+}
+.lang-btn:hover { background: rgba(37,99,235,.06); transform: translateY(-1px); }
+.lang-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(37,99,235,.25);
+}
 
-          <div class="hero-feature-row">
-            <div class="hero-feature">
-              <span class="feature-icon">🌍</span>
-              <div>
-                <strong id="feature1Title">پوشش بین‌المللی</strong>
-                <small id="feature1Text">پشتیبانی از چند زبان و مخاطبان جهانی</small>
-              </div>
-            </div>
-            <div class="hero-feature">
-              <span class="feature-icon">🔐</span>
-              <div>
-                <strong id="feature2Title">پرداخت ساختاریافته</strong>
-                <small id="feature2Text">نمایش مسیرهای پرداخت مستقل برای هر وکیل</small>
-              </div>
-            </div>
-            <div class="hero-feature">
-              <span class="feature-icon">📊</span>
-              <div>
-                <strong id="feature3Title">گزارش‌پذیری شفاف</strong>
-                <small id="feature3Text">نمایش گزارشات اخیر و پراکندگی کشوری</small>
-              </div>
-            </div>
-          </div>
+.hero-card {
+  overflow: hidden;
+  position: relative;
+  min-height: 360px;
+  padding: 42px 28px 32px;
+  margin-bottom: 18px;
+}
+.hero-art, .hero-overlay { position: absolute; inset: 0; pointer-events: none; }
+.hero-art-1 {
+  background:
+    radial-gradient(circle at 14% 20%, rgba(37,99,235,.18), transparent 25%),
+    radial-gradient(circle at 82% 22%, rgba(22,163,74,.14), transparent 21%),
+    radial-gradient(circle at 50% 90%, rgba(217,154,0,.11), transparent 28%);
+}
+.hero-art-2 {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(37,99,235,.05) 0 1px, transparent 1px 50px),
+    repeating-linear-gradient(0deg, rgba(37,99,235,.05) 0 1px, transparent 1px 50px);
+  mask-image: linear-gradient(180deg, black 20%, transparent 100%);
+  opacity: .5;
+}
+.hero-overlay {
+  background: linear-gradient(135deg, rgba(255,255,255,.3), rgba(255,255,255,.05));
+}
+.hero-content { position: relative; z-index: 1; text-align: center; }
+.hero-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(37,99,235,.08); color: var(--primary);
+  border: 1px solid rgba(37,99,235,.12);
+  border-radius: 999px; padding: 10px 16px; margin-bottom: 14px; font-weight: 700; font-size: 14px;
+}
+.hero-ribbon {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.78); border: 1px solid rgba(255,255,255,.82);
+  border-radius: 999px; padding: 10px 16px; margin-bottom: 16px;
+}
+.dot {
+  width: 10px; height: 10px; border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--green));
+  box-shadow: 0 0 0 6px rgba(37,99,235,.08);
+}
+.hero-ribbon span:last-child { color: var(--muted); font-size: 14px; }
+.hero-content h1 {
+  margin: 0 0 14px; font-size: clamp(32px, 4vw, 58px); line-height: 1.18;
+}
+.hero-content p {
+  margin: 0 auto; max-width: 900px; font-size: 20px; line-height: 1.9; color: var(--muted);
+}
+.feature-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px;
+  max-width: 980px; margin: 28px auto 0;
+}
+.feature-box {
+  background: rgba(255,255,255,.74); border: 1px solid rgba(255,255,255,.84);
+  border-radius: 20px; padding: 16px; display: flex; gap: 14px; text-align: inherit;
+}
+.feature-icon {
+  width: 44px; height: 44px; border-radius: 14px; flex: 0 0 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(22,163,74,.10));
+  font-size: 20px;
+}
+.feature-box strong { display: block; margin-bottom: 6px; }
+.feature-box p { margin: 0; font-size: 13px; line-height: 1.8; color: var(--muted); }
+.stats-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; max-width: 760px; margin: 24px auto 0;
+}
+.small-stats { max-width: none; margin-top: 0; }
+.stat-box {
+  position: relative; overflow: hidden;
+  background: rgba(255,255,255,.76); border: 1px solid rgba(255,255,255,.84);
+  border-radius: 18px; padding: 16px; display: grid; gap: 8px;
+}
+.stat-box span { color: var(--muted); font-size: 14px; }
+.stat-box strong { font-size: 28px; }
+.blue-accent::before, .green-accent::before, .gold-accent::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 6px;
+}
+.blue-accent::before { background: linear-gradient(180deg, #3b82f6, #1d4ed8); }
+.green-accent::before { background: linear-gradient(180deg, #22c55e, #15803d); }
+.gold-accent::before { background: linear-gradient(180deg, #fbbf24, #d99a00); }
 
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <span id="heroStat1Label">زبان‌های فعال</span>
-              <strong>9</strong>
-            </div>
-            <div class="hero-stat">
-              <span id="heroStat2Label">مسیرهای پرداخت</span>
-              <strong>2</strong>
-            </div>
-            <div class="hero-stat">
-              <span id="heroStat3Label">گزارش‌های نمونه</span>
-              <strong id="sampleReportsCount">20</strong>
-            </div>
-          </div>
-        </div>
-      </section>
-    </header>
+.two-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px;
+}
+.section-card { padding: 24px; }
+.payment-card { margin-bottom: 18px; }
+.section-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px;
+}
+.section-head h2 { margin: 0; font-size: 28px; }
+.muted, .sub-head p { margin: 0; color: var(--muted); line-height: 1.8; font-size: 14px; }
+.section-badge {
+  width: 46px; height: 46px; border-radius: 16px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(37,99,235,.10), rgba(22,163,74,.10)); font-size: 22px;
+}
+.amount-grid, .agent-grid, .summary-grid, .payment-grid {
+  display: grid; gap: 14px;
+}
+.amount-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.agent-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.summary-grid, .payment-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.amount-btn, .agent-card {
+  border: 1px solid var(--line); cursor: pointer; transition: .2s ease;
+}
+.amount-btn {
+  background: rgba(255,255,255,.82); border-radius: 20px; padding: 20px 14px;
+  font-size: 18px; font-weight: 700; color: var(--text);
+}
+.amount-btn:hover, .agent-card:hover { transform: translateY(-1px); }
+.amount-btn.active {
+  background: linear-gradient(180deg, rgba(37,99,235,.12), rgba(37,99,235,.05)); color: var(--primary); border-color: var(--primary);
+}
+.agent-card {
+  background: rgba(255,255,255,.78); border-radius: 22px; padding: 20px; text-align: inherit;
+  display: grid; gap: 10px; position: relative; overflow: hidden;
+}
+.agent-card.active {
+  background: linear-gradient(180deg, rgba(37,99,235,.10), rgba(37,99,235,.04)); border-color: var(--primary);
+}
+.agent-card::after {
+  content: ""; position: absolute; width: 120px; height: 120px; inset-inline-end: -24px; inset-block-end: -32px;
+  border-radius: 999px; background: radial-gradient(circle, rgba(37,99,235,.10), transparent 70%);
+}
+.agent-top { display: flex; justify-content: space-between; align-items: center; }
+.agent-pill {
+  display: inline-flex; background: rgba(37,99,235,.08); color: var(--primary); border-radius: 999px; padding: 7px 12px; font-size: 12px;
+}
+.agent-emoji { font-size: 26px; }
+.agent-card strong { font-size: 24px; }
+.agent-card small { color: var(--muted); font-size: 14px; line-height: 1.8; }
+.summary-box, .info-card, .sub-card {
+  background: rgba(255,255,255,.82); border: 1px solid var(--line); border-radius: 18px;
+}
+.summary-box { padding: 16px; position: relative; overflow: hidden; display: grid; gap: 8px; }
+.summary-box span { color: var(--muted); font-size: 14px; }
+.summary-box strong { font-size: 22px; }
+.info-card { padding: 16px; display: grid; gap: 10px; }
+.info-card span { color: var(--muted); font-size: 14px; }
+.value-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+}
+code {
+  flex: 1; background: #f8fbff; border: 1px dashed #cad6e8; border-radius: 14px;
+  padding: 12px 14px; font-size: 15px; word-break: break-word; color: #233247;
+}
+.field-shell, .field-group {
+  display: grid; gap: 8px;
+}
+.top-gap { margin-top: 18px; }
+.field-shell {
+  background: linear-gradient(180deg, rgba(248,251,255,.95), rgba(239,245,255,.92));
+  border: 1px solid #e3eaf6; border-radius: 20px; padding: 18px;
+}
+.field-group label, .field-shell label { color: var(--muted); font-size: 14px; }
+input, textarea, select {
+  width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px;
+  font: inherit; color: var(--text); background: rgba(255,255,255,.95); outline: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: rgba(37,99,235,.45); box-shadow: 0 0 0 4px rgba(37,99,235,.08);
+}
+.field-note, .helper-text {
+  margin: 0; color: var(--muted); line-height: 1.9; font-size: 14px;
+}
+.field-note {
+  color: #9a6700; background: #fff8e8; border: 1px solid #ffd98f; border-radius: 14px; padding: 12px 14px;
+}
+.notice-box {
+  display: flex; gap: 12px; align-items: center; background: #fff8e8; color: #9a6700;
+  border: 1px solid #ffd98f; border-radius: 18px; padding: 14px 16px;
+}
+.notice-box p { margin: 0; line-height: 1.9; }
+.action-row {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.primary-btn, .secondary-btn, .mini-btn {
+  border: 0; border-radius: 14px; cursor: pointer; transition: .2s ease; font: inherit;
+}
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-2)); color: #fff;
+  padding: 15px 20px; box-shadow: 0 12px 24px rgba(37,99,235,.22);
+}
+.secondary-btn {
+  background: linear-gradient(135deg, rgba(37,99,235,.10), rgba(22,163,74,.10)); color: var(--primary);
+  padding: 15px 20px;
+}
+.mini-btn { background: rgba(37,99,235,.08); color: var(--primary); padding: 10px 14px; white-space: nowrap; }
+.primary-btn:hover, .secondary-btn:hover, .mini-btn:hover { transform: translateY(-1px); }
+.form-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px;
+}
+.full-span { grid-column: 1 / -1; }
+.success-box {
+  margin-top: 16px; background: rgba(22,163,74,.08); border: 1px solid rgba(22,163,74,.22);
+  border-radius: 18px; padding: 18px; line-height: 1.9;
+}
+.success-box strong { display: block; margin-bottom: 8px; color: var(--green); }
+.reports-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr; gap: 18px;
+}
+.sub-card { padding: 18px; }
+.sub-head h3 { margin: 0 0 8px; font-size: 22px; }
+.map-wrap {
+  margin-top: 14px; background: linear-gradient(180deg, #f9fbff 0%, #eef5ff 100%); border: 1px solid #dbe7f7;
+  border-radius: 22px; padding: 12px;
+}
+.world-map { display: block; width: 100%; height: auto; }
+.map-ocean { fill: #eef5ff; }
+.continent { fill: #d7e5fb; stroke: #bdd0ef; stroke-width: 2; }
+.map-marker circle { fill: #2563eb; stroke: #fff; stroke-width: 3; }
+.map-marker text { font-size: 11px; fill: #18304f; font-weight: 700; }
+.table-wrap { margin-top: 14px; overflow-x: auto; }
+.country-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.country-table th, .country-table td { text-align: start; padding: 12px 10px; border-bottom: 1px solid #e4ebf6; }
+.country-table th { color: var(--muted); font-weight: 400; }
+.recent-list {
+  display: grid; gap: 12px; margin-top: 14px; max-height: 760px; overflow: auto; padding-inline-end: 4px;
+}
+.report-item {
+  position: relative; overflow: hidden;
+  background: rgba(255,255,255,.88); border: 1px solid var(--line); border-radius: 18px; padding: 14px;
+  display: grid; gap: 10px;
+}
+.report-item::after {
+  content: ""; position: absolute; width: 90px; height: 90px; inset-inline-end: -20px; inset-block-end: -20px;
+  border-radius: 999px; background: radial-gradient(circle, rgba(37,99,235,.08), transparent 70%);
+}
+.report-item-top { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.report-name { font-weight: 700; font-size: 16px; }
+.report-country { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; }
+.report-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.report-tag {
+  background: rgba(37,99,235,.08); color: var(--primary); border-radius: 999px; padding: 6px 10px; font-size: 12px;
+}
+.report-note { color: var(--muted); line-height: 1.8; font-size: 14px; }
+.footer-card {
+  margin-top: 18px; padding: 18px 20px; text-align: center;
+}
+.footer-card p { margin: 0; color: var(--muted); line-height: 1.9; }
+.footer-card a { color: var(--primary); text-decoration: none; font-weight: 700; }
+.footer-card a:hover { text-decoration: underline; }
+.hidden { display: none !important; }
 
-    <section class="panel glass">
-      <div class="panel-head">
-        <div>
-          <h2 id="amountTitle">انتخاب مبلغ</h2>
-          <p class="muted" id="currencyLabel">ارز: دلار</p>
-        </div>
-        <div class="panel-icon">💠</div>
-      </div>
+body[dir="ltr"] .hero-content,
+body[dir="ltr"] .feature-box,
+body[dir="ltr"] .section-card,
+body[dir="ltr"] .agent-card,
+body[dir="ltr"] .summary-box,
+body[dir="ltr"] .info-card,
+body[dir="ltr"] .report-item,
+body[dir="ltr"] .sub-card,
+body[dir="ltr"] .footer-card { text-align: left; }
 
-      <div class="amount-grid" id="amountGrid">
-        <button class="amount-btn active" data-amount="10">10</button>
-        <button class="amount-btn" data-amount="25">25</button>
-        <button class="amount-btn" data-amount="50">50</button>
-        <button class="amount-btn" data-amount="100">100</button>
-        <button class="amount-btn" data-amount="250">250</button>
-        <button class="amount-btn" data-amount="500">500</button>
-      </div>
-
-      <div class="custom-amount-box">
-        <label for="customAmount" id="customAmountLabel">مبلغ دلخواه</label>
-        <input id="customAmount" type="number" min="1" placeholder="مثلاً 75" />
-      </div>
-
-      <div class="notice-box">
-        <span class="notice-icon">⚠️</span>
-        <p id="amountNotice">مبالغ بالاتر از 1000 دلار پس از تأیید نهایی ثبت می‌شوند.</p>
-      </div>
-    </section>
-
-    <section class="panel glass">
-      <div class="panel-head">
-        <div>
-          <h2 id="agentTitle">انتخاب وکیل دریافت‌کننده</h2>
-          <p class="muted" id="agentSubtitle">هر وکیل اطلاعات پرداخت مستقل خود را دارد.</p>
-        </div>
-        <div class="panel-icon">👥</div>
-      </div>
-
-      <div class="agent-grid">
-        <button class="agent-card active" data-agent="1">
-          <div class="agent-top">
-            <span class="agent-badge" id="agent1Badge">وکیل ۱</span>
-            <span class="agent-icon">🧾</span>
-          </div>
-          <strong id="agent1Name">دفتر اول</strong>
-          <small id="agent1Desc">دریافت مستقل اطلاعات پرداخت</small>
-          <div class="agent-decor"></div>
-        </button>
-
-        <button class="agent-card" data-agent="2">
-          <div class="agent-top">
-            <span class="agent-badge" id="agent2Badge">وکیل ۲</span>
-            <span class="agent-icon">💳</span>
-          </div>
-          <strong id="agent2Name">دفتر دوم</strong>
-          <small id="agent2Desc">دریافت مستقل اطلاعات پرداخت</small>
-          <div class="agent-decor"></div>
-        </button>
-      </div>
-    </section>
-
-    <section class="panel glass">
-      <div class="panel-head">
-        <div>
-          <h2 id="payInfoTitle">اطلاعات پرداخت</h2>
-          <p class="muted" id="payInfoSubtitle">اطلاعات نمایشی مربوط به وکیل انتخاب‌شده</p>
-        </div>
-        <div class="panel-icon">💳</div>
-      </div>
-
-      <div class="summary-grid">
-        <div class="summary-card accent-blue">
-          <span id="selectedAmountTextLabel">مبلغ انتخابی</span>
-          <strong id="selectedAmountText">10 USD</strong>
-        </div>
-        <div class="summary-card accent-green">
-          <span id="selectedAgentTextLabel">وکیل انتخاب‌شده</span>
-          <strong id="selectedAgentText">دفتر اول</strong>
-        </div>
-      </div>
-
-      <div class="payment-grid">
-        <div class="info-card">
-          <span id="masterLabel">شماره مستر</span>
-          <div class="info-value-row">
-            <code id="masterValue">1234 5678 9012 3456</code>
-            <button class="mini-btn copy-btn" data-copy-target="masterValue" id="copyMasterBtn">کپی</button>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <span id="zainLabel">زین‌کش</span>
-          <div class="info-value-row">
-            <code id="zainValue">0770 123 4567</code>
-            <button class="mini-btn copy-btn" data-copy-target="zainValue" id="copyZainBtn">کپی</button>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <span id="phoneLabel">تلفن</span>
-          <div class="info-value-row">
-            <code id="phoneValue">+964 770 123 4567</code>
-            <button class="mini-btn copy-btn" data-copy-target="phoneValue" id="copyPhoneBtn">کپی</button>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <span id="qrLabel">بارکد / QR</span>
-          <div class="info-value-row">
-            <code id="qrValue">QR-AGENT-1</code>
-            <button class="mini-btn copy-btn" data-copy-target="qrValue" id="copyQrBtn">کپی</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="name-box">
-        <label for="dedicationName" id="dedicationNameLabel">نام شخص / نام اهدایی</label>
-        <input
-          id="dedicationName"
-          type="text"
-          value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای"
-        />
-        <p class="name-note" id="dedicationNameNote">
-          نوشتن نام الزامی نیست؛ این بخش می‌تواند خالی بماند یا با نام مستعار تکمیل شود.
-        </p>
-      </div>
-
-      <div class="cta-row">
-        <button class="primary-btn" id="confirmBtn">اعلام پرداخت</button>
-        <button class="secondary-btn" id="contactBtn">تماس با وکیل</button>
-      </div>
-
-      <p class="helper-text" id="helperText">پس از پرداخت، روی «اعلام پرداخت» بزنید تا اطلاعات پرداخت خود را ثبت کنید.</p>
-    </section>
-
-    <section class="panel glass hidden" id="reportSection">
-      <div class="panel-head">
-        <div>
-          <h2 id="reportTitle">اعلام پرداخت</h2>
-          <p class="muted" id="reportSubtitle">فرم نمایشی برای ثبت اطلاعات پرداخت</p>
-        </div>
-        <div class="panel-icon">📝</div>
-      </div>
-
-      <form id="reportForm" class="report-form">
-        <div class="form-group">
-          <label for="payerName" id="payerNameLabel">نام پرداخت‌کننده</label>
-          <input id="payerName" type="text" placeholder="نام شما" />
-        </div>
-
-        <div class="form-group">
-          <label for="payerContact" id="payerContactLabel">شماره تماس / پیام‌رسان</label>
-          <input id="payerContact" type="text" placeholder="مثلاً 0770..." />
-        </div>
-
-        <div class="form-group">
-          <label for="payerCountry" id="payerCountryLabel">کشور</label>
-          <select id="payerCountry">
-            <option value="Iraq">Iraq</option>
-            <option value="Iran">Iran</option>
-            <option value="Germany">Germany</option>
-            <option value="France">France</option>
-            <option value="Turkey">Turkey</option>
-            <option value="Pakistan">Pakistan</option>
-            <option value="Brazil">Brazil</option>
-            <option value="Spain">Spain</option>
-            <option value="United States">United States</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="Afghanistan">Afghanistan</option>
-            <option value="Lebanon">Lebanon</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="reportDedicationName" id="reportDedicationLabel">نام ثبت‌شونده</label>
-          <input
-            id="reportDedicationName"
-            type="text"
-            value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای"
-          />
-        </div>
-
-        <div class="form-group full">
-          <label for="paymentNote" id="paymentNoteLabel">توضیحات</label>
-          <textarea id="paymentNote" rows="4" placeholder="زمان پرداخت، مبلغ، توضیح کوتاه..."></textarea>
-        </div>
-
-        <div class="cta-row">
-          <button type="submit" class="primary-btn" id="submitReportBtn">ثبت اطلاعات</button>
-        </div>
-      </form>
-
-      <div class="success-box hidden" id="successBox">
-        <strong id="successTitle">اطلاعات شما ثبت شد</strong>
-        <p id="successText">این نسخه آزمایشی است. در مرحله بعد ثبت واقعی را به تلگرام، ایمیل یا پایگاه داده وصل می‌کنیم.</p>
-      </div>
-    </section>
-
-    <section class="panel glass reports-panel">
-      <div class="panel-head">
-        <div>
-          <h2 id="reportsMainTitle">گزارشات</h2>
-          <p class="muted" id="reportsMainSubtitle">نمایش نمونه‌ای از گزارش‌های اخیر و پراکندگی کشوری</p>
-        </div>
-        <div class="panel-icon">📊</div>
-      </div>
-
-      <div class="report-stats-grid">
-        <div class="stat-card accent-blue">
-          <span id="statTotalReportsLabel">کل گزارشات</span>
-          <strong id="statTotalReports">20</strong>
-        </div>
-        <div class="stat-card accent-gold">
-          <span id="statCountriesLabel">کشورهای مشارکت‌کننده</span>
-          <strong id="statCountries">0</strong>
-        </div>
-        <div class="stat-card accent-green">
-          <span id="statTotalAmountLabel">مجموع نمونه مبالغ</span>
-          <strong id="statTotalAmount">0 USD</strong>
-        </div>
-      </div>
-
-      <div class="reports-layout">
-        <div class="map-card">
-          <div class="sub-head">
-            <h3 id="worldMapTitle">گزارش کشوری</h3>
-            <p id="worldMapSubtitle">کشورهای دارای گزارش روی نقشه و در جدول زیر نمایش داده شده‌اند.</p>
-          </div>
-
-          <div class="world-map-wrap">
-            <svg id="worldMap" viewBox="0 0 1000 500" class="world-map" aria-label="World map">
-              <defs>
-                <linearGradient id="oceanGradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#f8fbff"></stop>
-                  <stop offset="100%" stop-color="#e8f1ff"></stop>
-                </linearGradient>
-              </defs>
-
-              <rect x="0" y="0" width="1000" height="500" rx="24" class="map-ocean"></rect>
-
-              <path class="continent" d="M88,133 C125,100 172,102 214,109 C256,116 289,133 304,158 C311,170 311,184 296,190 C270,201 252,219 248,244 C244,267 220,282 188,280 C152,278 113,261 96,236 C82,214 71,194 60,176 C52,162 59,145 88,133 Z"></path>
-              <path class="continent" d="M250,287 C281,279 308,285 326,304 C342,322 344,349 336,375 C327,402 307,429 283,450 C262,468 233,468 216,449 C199,430 195,404 198,379 C203,347 221,315 250,287 Z"></path>
-              <path class="continent" d="M440,110 C485,91 532,93 581,98 C636,103 701,107 757,127 C815,148 868,172 893,214 C906,236 900,255 872,261 C849,267 832,278 822,295 C813,311 795,321 763,319 C730,316 703,307 674,310 C636,314 604,333 563,339 C525,344 483,336 461,312 C440,290 434,264 433,235 C432,207 413,189 400,171 C387,153 398,128 440,110 Z"></path>
-              <path class="continent" d="M528,350 C555,346 580,353 597,368 C613,382 621,401 621,423 C620,445 611,465 594,478 C575,491 549,495 526,490 C503,486 490,472 487,452 C483,432 489,408 500,390 C509,374 514,358 528,350 Z"></path>
-              <path class="continent" d="M793,347 C823,335 854,341 875,359 C896,377 904,403 899,431 C895,456 878,474 854,484 C830,494 802,491 785,474 C768,458 764,435 769,412 C773,389 778,361 793,347 Z"></path>
-
-              <g id="mapMarkers"></g>
-            </svg>
-          </div>
-
-          <div class="country-table-wrap">
-            <table class="country-table">
-              <thead>
-                <tr>
-                  <th id="countryTableCountry">کشور</th>
-                  <th id="countryTableCount">تعداد</th>
-                  <th id="countryTableAmount">جمع مبلغ</th>
-                </tr>
-              </thead>
-              <tbody id="countryTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="recent-card">
-          <div class="sub-head">
-            <h3 id="recentReportsTitle">20 گزارش آخر</h3>
-            <p id="recentReportsSubtitle">آخرین گزارش‌های ثبت‌شده به‌صورت نمایشی</p>
-          </div>
-
-          <div class="recent-list" id="recentReportsList"></div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="site-footer glass">
-      <div class="footer-content">
-        <div class="footer-badge">⚙️</div>
-        <p id="footerText">
-          توسعه داده شده توسط:
-          <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">
-            جامعة المصطفی العالمیة - نمایندگی عراق
-          </a>
-        </p>
-      </div>
-    </footer>
-  </main>
-
-  <script src="./script.js"></script>
-</body>
-</html>
+@media (max-width: 1100px) {
+  .feature-grid, .reports-grid, .two-col { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+  .stats-grid, .amount-grid, .agent-grid, .summary-grid, .payment-grid, .form-grid { grid-template-columns: 1fr; }
+  .hero-card { padding: 30px 18px 24px; }
+  .hero-content p { font-size: 16px; }
+  .section-card { padding: 18px; }
+  .section-head h2 { font-size: 24px; }
+}

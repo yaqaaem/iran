@@ -3,217 +3,204 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>جمع‌آوری کمک‌های مردمی به انقلاب اسلامی ایران</title>
+  <title>جمع آوری کمکهای مردمی به انقلاب اسلامی ایران</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-  <div class="bg-orb orb-3"></div>
+  <div class="bg bg-a"></div>
+  <div class="bg bg-b"></div>
   <div class="bg-grid"></div>
 
-  <main class="app-shell">
-    <header class="topbar">
-      <div class="lang-switcher-wrap">
-        <div class="lang-switcher" dir="ltr" id="langSwitcher">
-          <button class="lang-btn active" data-lang="fa"><span class="flag">🇮🇷</span><span>فارسی</span></button>
-          <button class="lang-btn" data-lang="ar"><span class="flag">🇮🇶</span><span>العربية</span></button>
-          <button class="lang-btn" data-lang="en"><span class="flag">🇺🇸</span><span>English</span></button>
-          <button class="lang-btn" data-lang="ur"><span class="flag">🇵🇰</span><span>اردو</span></button>
-          <button class="lang-btn" data-lang="fr"><span class="flag">🇫🇷</span><span>Français</span></button>
-          <button class="lang-btn" data-lang="de"><span class="flag">🇩🇪</span><span>Deutsch</span></button>
-          <button class="lang-btn" data-lang="es"><span class="flag">🇪🇸</span><span>Español</span></button>
-          <button class="lang-btn" data-lang="pt"><span class="flag">🇧🇷</span><span>Português</span></button>
-          <button class="lang-btn" data-lang="tr"><span class="flag">🇹🇷</span><span>Türkçe</span></button>
+  <main class="shell">
+    <section class="lang-bar card-soft">
+      <div class="lang-switcher" dir="ltr">
+        <button class="lang-btn active" data-lang="fa"><span>🇮🇷</span><span>فارسی</span></button>
+        <button class="lang-btn" data-lang="ar"><span>🇮🇶</span><span>العربية</span></button>
+        <button class="lang-btn" data-lang="en"><span>🇺🇸</span><span>English</span></button>
+        <button class="lang-btn" data-lang="ur"><span>🇵🇰</span><span>اردو</span></button>
+        <button class="lang-btn" data-lang="fr"><span>🇫🇷</span><span>Français</span></button>
+        <button class="lang-btn" data-lang="de"><span>🇩🇪</span><span>Deutsch</span></button>
+        <button class="lang-btn" data-lang="es"><span>🇪🇸</span><span>Español</span></button>
+        <button class="lang-btn" data-lang="pt"><span>🇧🇷</span><span>Português</span></button>
+        <button class="lang-btn" data-lang="tr"><span>🇹🇷</span><span>Türkçe</span></button>
+      </div>
+    </section>
+
+    <section class="hero card hero-card">
+      <div class="hero-art hero-art-1"></div>
+      <div class="hero-art hero-art-2"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <div class="hero-pill" id="heroPill">پلتفرم حمایتی چندزبانه</div>
+        <div class="hero-ribbon">
+          <span class="dot"></span>
+          <span id="heroRibbon">حمایت مردمی، همبستگی جهانی، مسیرهای پرداخت متنوع</span>
+        </div>
+
+        <h1 id="title">جمع آوری کمکهای مردمی به انقلاب اسلامی ایران</h1>
+        <p id="subtitle">برای حمایت، مبلغ مورد نظر و وکیل دریافت‌کننده را انتخاب کنید.</p>
+
+        <div class="feature-grid">
+          <article class="feature-box">
+            <div class="feature-icon">🌍</div>
+            <div>
+              <strong id="feature1Title">پوشش بین‌المللی</strong>
+              <p id="feature1Text">پشتیبانی از چند زبان و مخاطبان جهانی</p>
+            </div>
+          </article>
+          <article class="feature-box">
+            <div class="feature-icon">💳</div>
+            <div>
+              <strong id="feature2Title">پرداخت ساختاریافته</strong>
+              <p id="feature2Text">نمایش مسیرهای پرداخت مستقل برای هر وکیل</p>
+            </div>
+          </article>
+          <article class="feature-box">
+            <div class="feature-icon">📊</div>
+            <div>
+              <strong id="feature3Title">گزارش‌پذیری شفاف</strong>
+              <p id="feature3Text">نمایش گزارشات اخیر و پراکندگی کشوری</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-box">
+            <span id="heroStat1Label">زبان‌های فعال</span>
+            <strong>9</strong>
+          </article>
+          <article class="stat-box">
+            <span id="heroStat2Label">مسیرهای پرداخت</span>
+            <strong>2</strong>
+          </article>
+          <article class="stat-box">
+            <span id="heroStat3Label">گزارش‌های نمونه</span>
+            <strong id="sampleReportsCount">20</strong>
+          </article>
         </div>
       </div>
+    </section>
 
-      <section class="hero-banner glass">
-        <div class="banner-layer banner-layer-1"></div>
-        <div class="banner-layer banner-layer-2"></div>
-        <div class="banner-pattern"></div>
-
-        <div class="banner-content">
-          <div class="hero-badge" id="heroBadge">پلتفرم حمایتی چندزبانه</div>
-
-          <div class="hero-ribbon">
-            <span class="ribbon-dot"></span>
-            <span id="heroRibbonText">حمایت مردمی، همبستگی جهانی، مسیرهای پرداخت متنوع</span>
+    <section class="two-col">
+      <section class="card section-card">
+        <div class="section-head">
+          <div>
+            <h2 id="amountTitle">انتخاب مبلغ</h2>
+            <p class="muted" id="currencyLabel">ارز: دلار</p>
           </div>
+          <div class="section-badge">💠</div>
+        </div>
 
-          <h1 id="title">جمع‌آوری کمکهای مردمی به انقلاب اسلامی ایران</h1>
-          <p id="subtitle">برای حمایت، مبلغ مورد نظر و وکیل دریافت‌کننده را انتخاب کنید.</p>
+        <div class="amount-grid">
+          <button class="amount-btn active" data-amount="10">10</button>
+          <button class="amount-btn" data-amount="25">25</button>
+          <button class="amount-btn" data-amount="50">50</button>
+          <button class="amount-btn" data-amount="100">100</button>
+          <button class="amount-btn" data-amount="250">250</button>
+          <button class="amount-btn" data-amount="500">500</button>
+        </div>
 
-          <div class="hero-feature-row">
-            <div class="hero-feature">
-              <span class="feature-icon">🌍</span>
-              <div>
-                <strong id="feature1Title">پوشش بین‌المللی</strong>
-                <small id="feature1Text">پشتیبانی از چند زبان و مخاطبان جهانی</small>
-              </div>
-            </div>
-            <div class="hero-feature">
-              <span class="feature-icon">🔐</span>
-              <div>
-                <strong id="feature2Title">پرداخت ساختاریافته</strong>
-                <small id="feature2Text">نمایش مسیرهای پرداخت مستقل برای هر وکیل</small>
-              </div>
-            </div>
-            <div class="hero-feature">
-              <span class="feature-icon">📊</span>
-              <div>
-                <strong id="feature3Title">گزارش‌پذیری شفاف</strong>
-                <small id="feature3Text">نمایش گزارشات اخیر و پراکندگی کشوری</small>
-              </div>
-            </div>
-          </div>
+        <div class="field-group top-gap">
+          <label for="customAmount" id="customAmountLabel">مبلغ دلخواه</label>
+          <input id="customAmount" type="number" min="1" placeholder="مثلاً 75" />
+        </div>
 
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <span id="heroStat1Label">زبان‌های فعال</span>
-              <strong>9</strong>
-            </div>
-            <div class="hero-stat">
-              <span id="heroStat2Label">مسیرهای پرداخت</span>
-              <strong>2</strong>
-            </div>
-            <div class="hero-stat">
-              <span id="heroStat3Label">گزارش‌های نمونه</span>
-              <strong id="sampleReportsCount">20</strong>
-            </div>
-          </div>
+        <div class="notice-box top-gap">
+          <span>⚠️</span>
+          <p id="amountNotice">مبالغ بالاتر از 1000 دلار پس از تأیید نهایی ثبت می‌شوند.</p>
         </div>
       </section>
-    </header>
 
-    <section class="panel glass">
-      <div class="panel-head">
-        <div>
-          <h2 id="amountTitle">انتخاب مبلغ</h2>
-          <p class="muted" id="currencyLabel">ارز: دلار</p>
+      <section class="card section-card">
+        <div class="section-head">
+          <div>
+            <h2 id="agentTitle">انتخاب وکیل دریافت‌کننده</h2>
+            <p class="muted" id="agentSubtitle">هر وکیل اطلاعات پرداخت مستقل خود را دارد.</p>
+          </div>
+          <div class="section-badge">👥</div>
         </div>
-        <div class="panel-icon">💠</div>
-      </div>
 
-      <div class="amount-grid" id="amountGrid">
-        <button class="amount-btn active" data-amount="10">10</button>
-        <button class="amount-btn" data-amount="25">25</button>
-        <button class="amount-btn" data-amount="50">50</button>
-        <button class="amount-btn" data-amount="100">100</button>
-        <button class="amount-btn" data-amount="250">250</button>
-        <button class="amount-btn" data-amount="500">500</button>
-      </div>
+        <div class="agent-grid">
+          <button class="agent-card active" data-agent="1">
+            <div class="agent-top">
+              <span class="agent-pill" id="agent1Badge">وکیل ۱</span>
+              <span class="agent-emoji">🧾</span>
+            </div>
+            <strong id="agent1Name">دفتر اول</strong>
+            <small id="agent1Desc">دریافت مستقل اطلاعات پرداخت</small>
+          </button>
 
-      <div class="custom-amount-box">
-        <label for="customAmount" id="customAmountLabel">مبلغ دلخواه</label>
-        <input id="customAmount" type="number" min="1" placeholder="مثلاً 75" />
-      </div>
-
-      <div class="notice-box">
-        <span class="notice-icon">⚠️</span>
-        <p id="amountNotice">مبالغ بالاتر از 1000 دلار پس از تأیید نهایی ثبت می‌شوند.</p>
-      </div>
+          <button class="agent-card" data-agent="2">
+            <div class="agent-top">
+              <span class="agent-pill" id="agent2Badge">وکیل ۲</span>
+              <span class="agent-emoji">💳</span>
+            </div>
+            <strong id="agent2Name">دفتر دوم</strong>
+            <small id="agent2Desc">دریافت مستقل اطلاعات پرداخت</small>
+          </button>
+        </div>
+      </section>
     </section>
 
-    <section class="panel glass">
-      <div class="panel-head">
-        <div>
-          <h2 id="agentTitle">انتخاب وکیل دریافت‌کننده</h2>
-          <p class="muted" id="agentSubtitle">هر وکیل اطلاعات پرداخت مستقل خود را دارد.</p>
-        </div>
-        <div class="panel-icon">👥</div>
-      </div>
-
-      <div class="agent-grid">
-        <button class="agent-card active" data-agent="1">
-          <div class="agent-top">
-            <span class="agent-badge" id="agent1Badge">وکیل ۱</span>
-            <span class="agent-icon">🧾</span>
-          </div>
-          <strong id="agent1Name">دفتر اول</strong>
-          <small id="agent1Desc">دریافت مستقل اطلاعات پرداخت</small>
-          <div class="agent-decor"></div>
-        </button>
-
-        <button class="agent-card" data-agent="2">
-          <div class="agent-top">
-            <span class="agent-badge" id="agent2Badge">وکیل ۲</span>
-            <span class="agent-icon">💳</span>
-          </div>
-          <strong id="agent2Name">دفتر دوم</strong>
-          <small id="agent2Desc">دریافت مستقل اطلاعات پرداخت</small>
-          <div class="agent-decor"></div>
-        </button>
-      </div>
-    </section>
-
-    <section class="panel glass">
-      <div class="panel-head">
+    <section class="card section-card payment-card">
+      <div class="section-head">
         <div>
           <h2 id="payInfoTitle">اطلاعات پرداخت</h2>
           <p class="muted" id="payInfoSubtitle">اطلاعات نمایشی مربوط به وکیل انتخاب‌شده</p>
         </div>
-        <div class="panel-icon">💳</div>
+        <div class="section-badge">💰</div>
       </div>
 
       <div class="summary-grid">
-        <div class="summary-card accent-blue">
+        <article class="summary-box blue-accent">
           <span id="selectedAmountTextLabel">مبلغ انتخابی</span>
           <strong id="selectedAmountText">10 USD</strong>
-        </div>
-        <div class="summary-card accent-green">
+        </article>
+        <article class="summary-box green-accent">
           <span id="selectedAgentTextLabel">وکیل انتخاب‌شده</span>
           <strong id="selectedAgentText">دفتر اول</strong>
-        </div>
+        </article>
       </div>
 
       <div class="payment-grid">
-        <div class="info-card">
+        <article class="info-card">
           <span id="masterLabel">شماره مستر</span>
-          <div class="info-value-row">
+          <div class="value-row">
             <code id="masterValue">1234 5678 9012 3456</code>
             <button class="mini-btn copy-btn" data-copy-target="masterValue" id="copyMasterBtn">کپی</button>
           </div>
-        </div>
-
-        <div class="info-card">
+        </article>
+        <article class="info-card">
           <span id="zainLabel">زین‌کش</span>
-          <div class="info-value-row">
+          <div class="value-row">
             <code id="zainValue">0770 123 4567</code>
             <button class="mini-btn copy-btn" data-copy-target="zainValue" id="copyZainBtn">کپی</button>
           </div>
-        </div>
-
-        <div class="info-card">
+        </article>
+        <article class="info-card">
           <span id="phoneLabel">تلفن</span>
-          <div class="info-value-row">
+          <div class="value-row">
             <code id="phoneValue">+964 770 123 4567</code>
             <button class="mini-btn copy-btn" data-copy-target="phoneValue" id="copyPhoneBtn">کپی</button>
           </div>
-        </div>
-
-        <div class="info-card">
+        </article>
+        <article class="info-card">
           <span id="qrLabel">بارکد / QR</span>
-          <div class="info-value-row">
+          <div class="value-row">
             <code id="qrValue">QR-AGENT-1</code>
             <button class="mini-btn copy-btn" data-copy-target="qrValue" id="copyQrBtn">کپی</button>
           </div>
-        </div>
+        </article>
       </div>
 
-      <div class="name-box">
+      <div class="field-shell top-gap">
         <label for="dedicationName" id="dedicationNameLabel">نام شخص / نام اهدایی</label>
-        <input
-          id="dedicationName"
-          type="text"
-          value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای"
-        />
-        <p class="name-note" id="dedicationNameNote">
-          نوشتن نام الزامی نیست؛ این بخش می‌تواند خالی بماند یا با نام مستعار تکمیل شود.
-        </p>
+        <input id="dedicationName" type="text" value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای" />
+        <p class="field-note" id="dedicationNameNote">نوشتن نام الزامی نیست؛ این بخش می‌تواند خالی بماند یا با نام مستعار تکمیل شود.</p>
       </div>
 
-      <div class="cta-row">
+      <div class="action-row top-gap">
         <button class="primary-btn" id="confirmBtn">اعلام پرداخت</button>
         <button class="secondary-btn" id="contactBtn">تماس با وکیل</button>
       </div>
@@ -221,27 +208,25 @@
       <p class="helper-text" id="helperText">پس از پرداخت، روی «اعلام پرداخت» بزنید تا اطلاعات پرداخت خود را ثبت کنید.</p>
     </section>
 
-    <section class="panel glass hidden" id="reportSection">
-      <div class="panel-head">
+    <section class="card section-card hidden" id="reportSection">
+      <div class="section-head">
         <div>
           <h2 id="reportTitle">اعلام پرداخت</h2>
           <p class="muted" id="reportSubtitle">فرم نمایشی برای ثبت اطلاعات پرداخت</p>
         </div>
-        <div class="panel-icon">📝</div>
+        <div class="section-badge">📝</div>
       </div>
 
-      <form id="reportForm" class="report-form">
-        <div class="form-group">
+      <form id="reportForm" class="form-grid">
+        <div class="field-group">
           <label for="payerName" id="payerNameLabel">نام پرداخت‌کننده</label>
           <input id="payerName" type="text" placeholder="نام شما" />
         </div>
-
-        <div class="form-group">
+        <div class="field-group">
           <label for="payerContact" id="payerContactLabel">شماره تماس / پیام‌رسان</label>
           <input id="payerContact" type="text" placeholder="مثلاً 0770..." />
         </div>
-
-        <div class="form-group">
+        <div class="field-group">
           <label for="payerCountry" id="payerCountryLabel">کشور</label>
           <select id="payerCountry">
             <option value="Iraq">Iraq</option>
@@ -258,22 +243,15 @@
             <option value="Lebanon">Lebanon</option>
           </select>
         </div>
-
-        <div class="form-group">
+        <div class="field-group">
           <label for="reportDedicationName" id="reportDedicationLabel">نام ثبت‌شونده</label>
-          <input
-            id="reportDedicationName"
-            type="text"
-            value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای"
-          />
+          <input id="reportDedicationName" type="text" value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای" />
         </div>
-
-        <div class="form-group full">
+        <div class="field-group full-span">
           <label for="paymentNote" id="paymentNoteLabel">توضیحات</label>
           <textarea id="paymentNote" rows="4" placeholder="زمان پرداخت، مبلغ، توضیح کوتاه..."></textarea>
         </div>
-
-        <div class="cta-row">
+        <div class="full-span action-row">
           <button type="submit" class="primary-btn" id="submitReportBtn">ثبت اطلاعات</button>
         </div>
       </form>
@@ -284,59 +262,48 @@
       </div>
     </section>
 
-    <section class="panel glass reports-panel">
-      <div class="panel-head">
+    <section class="card section-card">
+      <div class="section-head">
         <div>
           <h2 id="reportsMainTitle">گزارشات</h2>
           <p class="muted" id="reportsMainSubtitle">نمایش نمونه‌ای از گزارش‌های اخیر و پراکندگی کشوری</p>
         </div>
-        <div class="panel-icon">📊</div>
+        <div class="section-badge">📈</div>
       </div>
 
-      <div class="report-stats-grid">
-        <div class="stat-card accent-blue">
+      <div class="stats-grid small-stats">
+        <article class="stat-box blue-accent">
           <span id="statTotalReportsLabel">کل گزارشات</span>
           <strong id="statTotalReports">20</strong>
-        </div>
-        <div class="stat-card accent-gold">
+        </article>
+        <article class="stat-box gold-accent">
           <span id="statCountriesLabel">کشورهای مشارکت‌کننده</span>
           <strong id="statCountries">0</strong>
-        </div>
-        <div class="stat-card accent-green">
+        </article>
+        <article class="stat-box green-accent">
           <span id="statTotalAmountLabel">مجموع نمونه مبالغ</span>
           <strong id="statTotalAmount">0 USD</strong>
-        </div>
+        </article>
       </div>
 
-      <div class="reports-layout">
-        <div class="map-card">
+      <div class="reports-grid top-gap">
+        <section class="sub-card map-panel">
           <div class="sub-head">
             <h3 id="worldMapTitle">گزارش کشوری</h3>
             <p id="worldMapSubtitle">کشورهای دارای گزارش روی نقشه و در جدول زیر نمایش داده شده‌اند.</p>
           </div>
-
-          <div class="world-map-wrap">
-            <svg id="worldMap" viewBox="0 0 1000 500" class="world-map" aria-label="World map">
-              <defs>
-                <linearGradient id="oceanGradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#f8fbff"></stop>
-                  <stop offset="100%" stop-color="#e8f1ff"></stop>
-                </linearGradient>
-              </defs>
-
+          <div class="map-wrap">
+            <svg viewBox="0 0 1000 500" class="world-map" aria-label="World map">
               <rect x="0" y="0" width="1000" height="500" rx="24" class="map-ocean"></rect>
-
               <path class="continent" d="M88,133 C125,100 172,102 214,109 C256,116 289,133 304,158 C311,170 311,184 296,190 C270,201 252,219 248,244 C244,267 220,282 188,280 C152,278 113,261 96,236 C82,214 71,194 60,176 C52,162 59,145 88,133 Z"></path>
               <path class="continent" d="M250,287 C281,279 308,285 326,304 C342,322 344,349 336,375 C327,402 307,429 283,450 C262,468 233,468 216,449 C199,430 195,404 198,379 C203,347 221,315 250,287 Z"></path>
               <path class="continent" d="M440,110 C485,91 532,93 581,98 C636,103 701,107 757,127 C815,148 868,172 893,214 C906,236 900,255 872,261 C849,267 832,278 822,295 C813,311 795,321 763,319 C730,316 703,307 674,310 C636,314 604,333 563,339 C525,344 483,336 461,312 C440,290 434,264 433,235 C432,207 413,189 400,171 C387,153 398,128 440,110 Z"></path>
               <path class="continent" d="M528,350 C555,346 580,353 597,368 C613,382 621,401 621,423 C620,445 611,465 594,478 C575,491 549,495 526,490 C503,486 490,472 487,452 C483,432 489,408 500,390 C509,374 514,358 528,350 Z"></path>
               <path class="continent" d="M793,347 C823,335 854,341 875,359 C896,377 904,403 899,431 C895,456 878,474 854,484 C830,494 802,491 785,474 C768,458 764,435 769,412 C773,389 778,361 793,347 Z"></path>
-
               <g id="mapMarkers"></g>
             </svg>
           </div>
-
-          <div class="country-table-wrap">
+          <div class="table-wrap">
             <table class="country-table">
               <thead>
                 <tr>
@@ -348,29 +315,20 @@
               <tbody id="countryTableBody"></tbody>
             </table>
           </div>
-        </div>
+        </section>
 
-        <div class="recent-card">
+        <section class="sub-card recent-panel">
           <div class="sub-head">
             <h3 id="recentReportsTitle">20 گزارش آخر</h3>
             <p id="recentReportsSubtitle">آخرین گزارش‌های ثبت‌شده به‌صورت نمایشی</p>
           </div>
-
           <div class="recent-list" id="recentReportsList"></div>
-        </div>
+        </section>
       </div>
     </section>
 
-    <footer class="site-footer glass">
-      <div class="footer-content">
-        <div class="footer-badge">⚙️</div>
-        <p id="footerText">
-          توسعه داده شده توسط:
-          <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">
-            جامعة المصطفی العالمیة - نمایندگی عراق
-          </a>
-        </p>
-      </div>
+    <footer class="card-soft footer-card">
+      <p id="footerText">توسعه داده شده توسط: <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">جامعة المصطفی العالمیة - نمایندگی عراق</a></p>
     </footer>
   </main>
 
