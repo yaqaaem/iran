@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>صفحه جمع‌آوری کمک</title>
+  <title>جمع‌آوری کمک‌های مردمی به انقلاب اسلامی ایران</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <div class="bg-orb orb-1"></div>
   <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
   <div class="bg-grid"></div>
 
   <main class="app-shell">
@@ -27,26 +28,59 @@
         </div>
       </div>
 
-      <section class="hero-card glass">
-        <div class="hero-decor hero-decor-left"></div>
-        <div class="hero-decor hero-decor-right"></div>
+      <section class="hero-banner glass">
+        <div class="banner-layer banner-layer-1"></div>
+        <div class="banner-layer banner-layer-2"></div>
+        <div class="banner-pattern"></div>
 
-        <div class="hero-badge" id="heroBadge">پلتفرم حمایتی چندزبانه</div>
-        <h1 id="title">صفحه جمع‌آوری کمک</h1>
-        <p id="subtitle">برای حمایت، مبلغ مورد نظر و وکیل دریافت‌کننده را انتخاب کنید.</p>
+        <div class="banner-content">
+          <div class="hero-badge" id="heroBadge">پلتفرم حمایتی چندزبانه</div>
 
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span id="heroStat1Label">زبان‌های فعال</span>
-            <strong>9</strong>
+          <div class="hero-ribbon">
+            <span class="ribbon-dot"></span>
+            <span id="heroRibbonText">حمایت مردمی، همبستگی جهانی، مسیرهای پرداخت متنوع</span>
           </div>
-          <div class="hero-stat">
-            <span id="heroStat2Label">مسیرهای پرداخت</span>
-            <strong>2</strong>
+
+          <h1 id="title">جمع‌آوری کمکهای مردمی به انقلاب اسلامی ایران</h1>
+          <p id="subtitle">برای حمایت، مبلغ مورد نظر و وکیل دریافت‌کننده را انتخاب کنید.</p>
+
+          <div class="hero-feature-row">
+            <div class="hero-feature">
+              <span class="feature-icon">🌍</span>
+              <div>
+                <strong id="feature1Title">پوشش بین‌المللی</strong>
+                <small id="feature1Text">پشتیبانی از چند زبان و مخاطبان جهانی</small>
+              </div>
+            </div>
+            <div class="hero-feature">
+              <span class="feature-icon">🔐</span>
+              <div>
+                <strong id="feature2Title">پرداخت ساختاریافته</strong>
+                <small id="feature2Text">نمایش مسیرهای پرداخت مستقل برای هر وکیل</small>
+              </div>
+            </div>
+            <div class="hero-feature">
+              <span class="feature-icon">📊</span>
+              <div>
+                <strong id="feature3Title">گزارش‌پذیری شفاف</strong>
+                <small id="feature3Text">نمایش گزارشات اخیر و پراکندگی کشوری</small>
+              </div>
+            </div>
           </div>
-          <div class="hero-stat">
-            <span id="heroStat3Label">گزارش‌های نمونه</span>
-            <strong id="sampleReportsCount">20</strong>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span id="heroStat1Label">زبان‌های فعال</span>
+              <strong>9</strong>
+            </div>
+            <div class="hero-stat">
+              <span id="heroStat2Label">مسیرهای پرداخت</span>
+              <strong>2</strong>
+            </div>
+            <div class="hero-stat">
+              <span id="heroStat3Label">گزارش‌های نمونه</span>
+              <strong id="sampleReportsCount">20</strong>
+            </div>
           </div>
         </div>
       </section>
@@ -58,6 +92,7 @@
           <h2 id="amountTitle">انتخاب مبلغ</h2>
           <p class="muted" id="currencyLabel">ارز: دلار</p>
         </div>
+        <div class="panel-icon">💠</div>
       </div>
 
       <div class="amount-grid" id="amountGrid">
@@ -86,6 +121,7 @@
           <h2 id="agentTitle">انتخاب وکیل دریافت‌کننده</h2>
           <p class="muted" id="agentSubtitle">هر وکیل اطلاعات پرداخت مستقل خود را دارد.</p>
         </div>
+        <div class="panel-icon">👥</div>
       </div>
 
       <div class="agent-grid">
@@ -96,6 +132,7 @@
           </div>
           <strong id="agent1Name">دفتر اول</strong>
           <small id="agent1Desc">دریافت مستقل اطلاعات پرداخت</small>
+          <div class="agent-decor"></div>
         </button>
 
         <button class="agent-card" data-agent="2">
@@ -105,6 +142,7 @@
           </div>
           <strong id="agent2Name">دفتر دوم</strong>
           <small id="agent2Desc">دریافت مستقل اطلاعات پرداخت</small>
+          <div class="agent-decor"></div>
         </button>
       </div>
     </section>
@@ -115,14 +153,15 @@
           <h2 id="payInfoTitle">اطلاعات پرداخت</h2>
           <p class="muted" id="payInfoSubtitle">اطلاعات نمایشی مربوط به وکیل انتخاب‌شده</p>
         </div>
+        <div class="panel-icon">💳</div>
       </div>
 
       <div class="summary-grid">
-        <div class="summary-card">
+        <div class="summary-card accent-blue">
           <span id="selectedAmountTextLabel">مبلغ انتخابی</span>
           <strong id="selectedAmountText">10 USD</strong>
         </div>
-        <div class="summary-card">
+        <div class="summary-card accent-green">
           <span id="selectedAgentTextLabel">وکیل انتخاب‌شده</span>
           <strong id="selectedAgentText">دفتر اول</strong>
         </div>
@@ -162,6 +201,18 @@
         </div>
       </div>
 
+      <div class="name-box">
+        <label for="dedicationName" id="dedicationNameLabel">نام شخص / نام اهدایی</label>
+        <input
+          id="dedicationName"
+          type="text"
+          value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای"
+        />
+        <p class="name-note" id="dedicationNameNote">
+          نوشتن نام الزامی نیست؛ این بخش می‌تواند خالی بماند یا با نام مستعار تکمیل شود.
+        </p>
+      </div>
+
       <div class="cta-row">
         <button class="primary-btn" id="confirmBtn">اعلام پرداخت</button>
         <button class="secondary-btn" id="contactBtn">تماس با وکیل</button>
@@ -176,6 +227,7 @@
           <h2 id="reportTitle">اعلام پرداخت</h2>
           <p class="muted" id="reportSubtitle">فرم نمایشی برای ثبت اطلاعات پرداخت</p>
         </div>
+        <div class="panel-icon">📝</div>
       </div>
 
       <form id="reportForm" class="report-form">
@@ -207,6 +259,15 @@
           </select>
         </div>
 
+        <div class="form-group">
+          <label for="reportDedicationName" id="reportDedicationLabel">نام ثبت‌شونده</label>
+          <input
+            id="reportDedicationName"
+            type="text"
+            value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای"
+          />
+        </div>
+
         <div class="form-group full">
           <label for="paymentNote" id="paymentNoteLabel">توضیحات</label>
           <textarea id="paymentNote" rows="4" placeholder="زمان پرداخت، مبلغ، توضیح کوتاه..."></textarea>
@@ -229,18 +290,19 @@
           <h2 id="reportsMainTitle">گزارشات</h2>
           <p class="muted" id="reportsMainSubtitle">نمایش نمونه‌ای از گزارش‌های اخیر و پراکندگی کشوری</p>
         </div>
+        <div class="panel-icon">📊</div>
       </div>
 
       <div class="report-stats-grid">
-        <div class="stat-card">
+        <div class="stat-card accent-blue">
           <span id="statTotalReportsLabel">کل گزارشات</span>
           <strong id="statTotalReports">20</strong>
         </div>
-        <div class="stat-card">
+        <div class="stat-card accent-gold">
           <span id="statCountriesLabel">کشورهای مشارکت‌کننده</span>
           <strong id="statCountries">0</strong>
         </div>
-        <div class="stat-card">
+        <div class="stat-card accent-green">
           <span id="statTotalAmountLabel">مجموع نمونه مبالغ</span>
           <strong id="statTotalAmount">0 USD</strong>
         </div>
@@ -255,6 +317,13 @@
 
           <div class="world-map-wrap">
             <svg id="worldMap" viewBox="0 0 1000 500" class="world-map" aria-label="World map">
+              <defs>
+                <linearGradient id="oceanGradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f8fbff"></stop>
+                  <stop offset="100%" stop-color="#e8f1ff"></stop>
+                </linearGradient>
+              </defs>
+
               <rect x="0" y="0" width="1000" height="500" rx="24" class="map-ocean"></rect>
 
               <path class="continent" d="M88,133 C125,100 172,102 214,109 C256,116 289,133 304,158 C311,170 311,184 296,190 C270,201 252,219 248,244 C244,267 220,282 188,280 C152,278 113,261 96,236 C82,214 71,194 60,176 C52,162 59,145 88,133 Z"></path>
@@ -291,6 +360,18 @@
         </div>
       </div>
     </section>
+
+    <footer class="site-footer glass">
+      <div class="footer-content">
+        <div class="footer-badge">⚙️</div>
+        <p id="footerText">
+          توسعه داده شده توسط:
+          <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">
+            جامعة المصطفی العالمیة - نمایندگی عراق
+          </a>
+        </p>
+      </div>
+    </footer>
   </main>
 
   <script src="./script.js"></script>
