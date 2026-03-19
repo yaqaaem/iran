@@ -1,783 +1,379 @@
-:root {
-  --bg: #f3f6fc;
-  --bg-2: #eef3fb;
-  --card: rgba(255, 255, 255, 0.82);
-  --card-solid: #ffffff;
-  --text: #182230;
-  --muted: #6e7a8c;
-  --line: #dfe6f1;
-  --line-2: rgba(255,255,255,0.6);
-  --primary: #2563eb;
-  --primary-2: #1d4ed8;
-  --primary-soft: rgba(37, 99, 235, 0.1);
-  --success: #0f9d58;
-  --warning-bg: #fff7e6;
-  --warning-line: #ffd488;
-  --warning-text: #9a6700;
-  --shadow: 0 20px 60px rgba(18, 35, 61, 0.08);
-  --radius-xl: 28px;
-  --radius-lg: 20px;
-  --radius-md: 16px;
-  --radius-sm: 12px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  font-family: Tahoma, Arial, sans-serif;
-  color: var(--text);
-  background:
-    linear-gradient(180deg, #f7f9fe 0%, #eef3fb 100%);
-  position: relative;
-  overflow-x: hidden;
-}
-
-.bg-orb {
-  position: fixed;
-  border-radius: 999px;
-  filter: blur(12px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.orb-1 {
-  width: 360px;
-  height: 360px;
-  background: radial-gradient(circle, rgba(37,99,235,0.14), rgba(37,99,235,0.03) 65%, transparent 100%);
-  top: -70px;
-  left: -60px;
-}
-
-.orb-2 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, rgba(59,130,246,0.12), rgba(37,99,235,0.02) 65%, transparent 100%);
-  bottom: -120px;
-  right: -80px;
-}
-
-.bg-grid {
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(37,99,235,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37,99,235,0.035) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: radial-gradient(circle at center, black 35%, transparent 90%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.app-shell {
-  width: min(1220px, calc(100% - 28px));
-  margin: 0 auto;
-  padding: 22px 0 56px;
-  position: relative;
-  z-index: 1;
-}
-
-.topbar {
-  margin-bottom: 18px;
-}
-
-.lang-switcher-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 18px;
-}
-
-.lang-switcher {
-  direction: ltr;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  width: min(100%, 980px);
-  padding: 12px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.64);
-  border: 1px solid rgba(255,255,255,0.75);
-  box-shadow: 0 10px 35px rgba(18, 35, 61, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.lang-switcher,
-.lang-switcher * {
-  direction: ltr;
-}
-
-.lang-btn {
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--text);
-  min-width: 108px;
-  padding: 12px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: 0.2s ease;
-}
-
-.lang-btn:hover {
-  background: rgba(37, 99, 235, 0.06);
-}
-
-.lang-btn.active {
-  background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  color: #fff;
-  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.26);
-}
-
-.flag {
-  font-size: 18px;
-  line-height: 1;
-}
-
-.glass {
-  background: var(--card);
-  border: 1px solid var(--line-2);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: var(--shadow);
-}
-
-.hero-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-xl);
-  padding: 42px 28px 30px;
-  text-align: center;
-}
-
-.hero-decor {
-  position: absolute;
-  width: 240px;
-  height: 240px;
-  border-radius: 999px;
-  filter: blur(4px);
-  opacity: 0.8;
-}
-
-.hero-decor-left {
-  top: -100px;
-  left: -80px;
-  background: radial-gradient(circle, rgba(37,99,235,0.18), rgba(37,99,235,0) 70%);
-}
-
-.hero-decor-right {
-  bottom: -120px;
-  right: -80px;
-  background: radial-gradient(circle, rgba(59,130,246,0.16), rgba(59,130,246,0) 70%);
-}
-
-.hero-badge {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: rgba(37, 99, 235, 0.08);
-  color: var(--primary);
-  border: 1px solid rgba(37,99,235,0.12);
-  border-radius: 999px;
-  padding: 10px 16px;
-  margin-bottom: 14px;
-  font-size: 14px;
-}
-
-.hero-card h1 {
-  position: relative;
-  z-index: 1;
-  margin: 0 0 12px;
-  font-size: clamp(30px, 4vw, 56px);
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-}
-
-.hero-card p {
-  position: relative;
-  z-index: 1;
-  margin: 0 auto;
-  max-width: 880px;
-  color: var(--muted);
-  font-size: 20px;
-  line-height: 1.9;
-}
-
-.hero-stats {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  max-width: 760px;
-  margin: 24px auto 0;
-}
-
-.hero-stat {
-  background: rgba(255,255,255,0.66);
-  border: 1px solid rgba(255,255,255,0.85);
-  border-radius: 18px;
-  padding: 16px;
-  display: grid;
-  gap: 8px;
-}
-
-.hero-stat span {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.hero-stat strong {
-  font-size: 28px;
-}
-
-.panel {
-  margin-top: 18px;
-  border-radius: var(--radius-xl);
-  padding: 24px;
-}
-
-.panel-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-.panel-head h2 {
-  margin: 0;
-  font-size: 28px;
-}
-
-.sub-head h3 {
-  margin: 0 0 8px;
-  font-size: 22px;
-}
-
-.sub-head p,
-.muted {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.8;
-  font-size: 14px;
-}
-
-.amount-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.amount-btn {
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.72);
-  border-radius: 20px;
-  padding: 20px 14px;
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--text);
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.amount-btn:hover {
-  transform: translateY(-1px);
-  border-color: rgba(37,99,235,0.35);
-}
-
-.amount-btn.active {
-  border-color: var(--primary);
-  background: linear-gradient(180deg, rgba(37,99,235,0.10), rgba(37,99,235,0.05));
-  color: var(--primary);
-  box-shadow: inset 0 0 0 1px rgba(37,99,235,0.06);
-}
-
-.custom-amount-box {
-  margin-top: 18px;
-  display: grid;
-  gap: 10px;
-}
-
-.custom-amount-box label,
-.form-group label {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.custom-amount-box input,
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  background: rgba(255,255,255,0.88);
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 15px 16px;
-  font-size: 16px;
-  outline: none;
-}
-
-.custom-amount-box input:focus,
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-  border-color: rgba(37,99,235,0.45);
-  box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
-}
-
-.notice-box {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--warning-bg);
-  border: 1px solid var(--warning-line);
-  color: var(--warning-text);
-  border-radius: 18px;
-  padding: 14px 16px;
-  margin-top: 18px;
-}
-
-.notice-box p {
-  margin: 0;
-  line-height: 1.9;
-}
-
-.notice-icon {
-  font-size: 20px;
-}
-
-.agent-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.agent-card {
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background: rgba(255,255,255,0.72);
-  padding: 20px;
-  text-align: inherit;
-  cursor: pointer;
-  display: grid;
-  gap: 10px;
-  transition: 0.2s ease;
-}
-
-.agent-card:hover {
-  transform: translateY(-1px);
-}
-
-.agent-card.active {
-  border-color: var(--primary);
-  background: linear-gradient(180deg, rgba(37,99,235,0.11), rgba(37,99,235,0.04));
-}
-
-.agent-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.agent-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  background: rgba(37,99,235,0.08);
-  color: var(--primary);
-  border-radius: 999px;
-  padding: 7px 12px;
-  font-size: 12px;
-}
-
-.agent-icon {
-  font-size: 26px;
-}
-
-.agent-card strong {
-  font-size: 24px;
-}
-
-.agent-card small {
-  color: var(--muted);
-  line-height: 1.8;
-  font-size: 14px;
-}
-
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 16px;
-}
-
-.summary-card {
-  background: rgba(255,255,255,0.72);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 16px;
-  display: grid;
-  gap: 8px;
-}
-
-.summary-card span {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.summary-card strong {
-  font-size: 22px;
-}
-
-.payment-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.info-card {
-  background: rgba(255,255,255,0.78);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 16px;
-  display: grid;
-  gap: 10px;
-}
-
-.info-card span {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.info-value-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-code {
-  flex: 1;
-  background: #f8fbff;
-  border: 1px dashed #cdd9eb;
-  border-radius: 14px;
-  padding: 12px 14px;
-  font-size: 15px;
-  white-space: pre-wrap;
-  word-break: break-word;
-  color: #233247;
-}
-
-.cta-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 18px;
-}
-
-.primary-btn,
-.secondary-btn,
-.mini-btn {
-  border: 0;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.primary-btn {
-  background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  color: #fff;
-  padding: 15px 20px;
-  font-size: 16px;
-  box-shadow: 0 12px 24px rgba(37,99,235,0.22);
-}
-
-.primary-btn:hover {
-  transform: translateY(-1px);
-}
-
-.secondary-btn {
-  background: rgba(37,99,235,0.08);
-  color: var(--primary);
-  padding: 15px 20px;
-  font-size: 16px;
-}
-
-.mini-btn {
-  background: rgba(37,99,235,0.08);
-  color: var(--primary);
-  padding: 10px 14px;
-  font-size: 14px;
-  white-space: nowrap;
-}
-
-.helper-text {
-  color: var(--muted);
-  line-height: 1.9;
-  margin: 14px 0 0;
-}
-
-.report-form {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.form-group {
-  display: grid;
-  gap: 8px;
-}
-
-.form-group.full {
-  grid-column: 1 / -1;
-}
-
-.success-box {
-  margin-top: 16px;
-  background: rgba(15,157,88,0.08);
-  border: 1px solid rgba(15,157,88,0.2);
-  border-radius: 18px;
-  padding: 18px;
-  line-height: 1.9;
-}
-
-.success-box strong {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--success);
-}
-
-.reports-panel {
-  overflow: hidden;
-}
-
-.report-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 18px;
-}
-
-.stat-card {
-  background: rgba(255,255,255,0.76);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 16px;
-  display: grid;
-  gap: 8px;
-}
-
-.stat-card span {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.stat-card strong {
-  font-size: 26px;
-}
-
-.reports-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 18px;
-}
-
-.map-card,
-.recent-card {
-  background: rgba(255,255,255,0.50);
-  border: 1px solid rgba(255,255,255,0.72);
-  border-radius: 24px;
-  padding: 18px;
-}
-
-.world-map-wrap {
-  margin-top: 14px;
-  background: linear-gradient(180deg, #f9fbff 0%, #eef5ff 100%);
-  border: 1px solid #dbe7f7;
-  border-radius: 22px;
-  padding: 12px;
-}
-
-.world-map {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.map-ocean {
-  fill: #edf5ff;
-}
-
-.continent {
-  fill: #d7e5fb;
-  stroke: #bdd0ef;
-  stroke-width: 2;
-}
-
-.map-marker circle {
-  fill: #2563eb;
-  stroke: #ffffff;
-  stroke-width: 3;
-}
-
-.map-marker text {
-  font-size: 11px;
-  fill: #1a2d4a;
-  font-weight: bold;
-}
-
-.country-table-wrap {
-  margin-top: 14px;
-  overflow-x: auto;
-}
-
-.country-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-
-.country-table th,
-.country-table td {
-  text-align: start;
-  padding: 12px 10px;
-  border-bottom: 1px solid #e5ecf6;
-}
-
-.country-table th {
-  color: var(--muted);
-  font-weight: normal;
-}
-
-.recent-list {
-  display: grid;
-  gap: 12px;
-  margin-top: 14px;
-  max-height: 760px;
-  overflow: auto;
-  padding-inline-end: 4px;
-}
-
-.report-item {
-  background: rgba(255,255,255,0.82);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 14px;
-  display: grid;
-  gap: 10px;
-}
-
-.report-item-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.report-name {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.report-country {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.report-tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.report-tag {
-  background: rgba(37,99,235,0.08);
-  color: var(--primary);
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-size: 12px;
-}
-
-.report-note {
-  color: var(--muted);
-  line-height: 1.8;
-  font-size: 14px;
-}
-
-.hidden {
-  display: none !important;
-}
-
-body[dir="ltr"] .hero-card,
-body[dir="ltr"] .panel,
-body[dir="ltr"] .agent-card,
-body[dir="ltr"] .summary-card,
-body[dir="ltr"] .info-card,
-body[dir="ltr"] .report-item,
-body[dir="ltr"] .stat-card {
-  text-align: left;
-}
-
-@media (max-width: 1100px) {
-  .reports-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 860px) {
-  .hero-stats,
-  .amount-grid,
-  .agent-grid,
-  .summary-grid,
-  .payment-grid,
-  .report-stats-grid,
-  .report-form {
-    grid-template-columns: 1fr;
-  }
-
-  .panel {
-    padding: 18px;
-  }
-
-  .hero-card {
-    padding: 30px 18px 24px;
-  }
-
-  .hero-card p {
-    font-size: 16px;
-  }
-
-  .panel-head h2 {
-    font-size: 24px;
-  }
-
-  .lang-switcher {
-    border-radius: 28px;
-  }
-}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>جمع‌آوری کمک‌های مردمی به انقلاب اسلامی ایران</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+  <div class="bg-grid"></div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="lang-switcher-wrap">
+        <div class="lang-switcher" dir="ltr" id="langSwitcher">
+          <button class="lang-btn active" data-lang="fa"><span class="flag">🇮🇷</span><span>فارسی</span></button>
+          <button class="lang-btn" data-lang="ar"><span class="flag">🇮🇶</span><span>العربية</span></button>
+          <button class="lang-btn" data-lang="en"><span class="flag">🇺🇸</span><span>English</span></button>
+          <button class="lang-btn" data-lang="ur"><span class="flag">🇵🇰</span><span>اردو</span></button>
+          <button class="lang-btn" data-lang="fr"><span class="flag">🇫🇷</span><span>Français</span></button>
+          <button class="lang-btn" data-lang="de"><span class="flag">🇩🇪</span><span>Deutsch</span></button>
+          <button class="lang-btn" data-lang="es"><span class="flag">🇪🇸</span><span>Español</span></button>
+          <button class="lang-btn" data-lang="pt"><span class="flag">🇧🇷</span><span>Português</span></button>
+          <button class="lang-btn" data-lang="tr"><span class="flag">🇹🇷</span><span>Türkçe</span></button>
+        </div>
+      </div>
+
+      <section class="hero-banner glass">
+        <div class="banner-layer banner-layer-1"></div>
+        <div class="banner-layer banner-layer-2"></div>
+        <div class="banner-pattern"></div>
+
+        <div class="banner-content">
+          <div class="hero-badge" id="heroBadge">پلتفرم حمایتی چندزبانه</div>
+
+          <div class="hero-ribbon">
+            <span class="ribbon-dot"></span>
+            <span id="heroRibbonText">حمایت مردمی، همبستگی جهانی، مسیرهای پرداخت متنوع</span>
+          </div>
+
+          <h1 id="title">جمع‌آوری کمکهای مردمی به انقلاب اسلامی ایران</h1>
+          <p id="subtitle">برای حمایت، مبلغ مورد نظر و وکیل دریافت‌کننده را انتخاب کنید.</p>
+
+          <div class="hero-feature-row">
+            <div class="hero-feature">
+              <span class="feature-icon">🌍</span>
+              <div>
+                <strong id="feature1Title">پوشش بین‌المللی</strong>
+                <small id="feature1Text">پشتیبانی از چند زبان و مخاطبان جهانی</small>
+              </div>
+            </div>
+            <div class="hero-feature">
+              <span class="feature-icon">🔐</span>
+              <div>
+                <strong id="feature2Title">پرداخت ساختاریافته</strong>
+                <small id="feature2Text">نمایش مسیرهای پرداخت مستقل برای هر وکیل</small>
+              </div>
+            </div>
+            <div class="hero-feature">
+              <span class="feature-icon">📊</span>
+              <div>
+                <strong id="feature3Title">گزارش‌پذیری شفاف</strong>
+                <small id="feature3Text">نمایش گزارشات اخیر و پراکندگی کشوری</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span id="heroStat1Label">زبان‌های فعال</span>
+              <strong>9</strong>
+            </div>
+            <div class="hero-stat">
+              <span id="heroStat2Label">مسیرهای پرداخت</span>
+              <strong>2</strong>
+            </div>
+            <div class="hero-stat">
+              <span id="heroStat3Label">گزارش‌های نمونه</span>
+              <strong id="sampleReportsCount">20</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <section class="panel glass">
+      <div class="panel-head">
+        <div>
+          <h2 id="amountTitle">انتخاب مبلغ</h2>
+          <p class="muted" id="currencyLabel">ارز: دلار</p>
+        </div>
+        <div class="panel-icon">💠</div>
+      </div>
+
+      <div class="amount-grid" id="amountGrid">
+        <button class="amount-btn active" data-amount="10">10</button>
+        <button class="amount-btn" data-amount="25">25</button>
+        <button class="amount-btn" data-amount="50">50</button>
+        <button class="amount-btn" data-amount="100">100</button>
+        <button class="amount-btn" data-amount="250">250</button>
+        <button class="amount-btn" data-amount="500">500</button>
+      </div>
+
+      <div class="custom-amount-box">
+        <label for="customAmount" id="customAmountLabel">مبلغ دلخواه</label>
+        <input id="customAmount" type="number" min="1" placeholder="مثلاً 75" />
+      </div>
+
+      <div class="notice-box">
+        <span class="notice-icon">⚠️</span>
+        <p id="amountNotice">مبالغ بالاتر از 1000 دلار پس از تأیید نهایی ثبت می‌شوند.</p>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <div class="panel-head">
+        <div>
+          <h2 id="agentTitle">انتخاب وکیل دریافت‌کننده</h2>
+          <p class="muted" id="agentSubtitle">هر وکیل اطلاعات پرداخت مستقل خود را دارد.</p>
+        </div>
+        <div class="panel-icon">👥</div>
+      </div>
+
+      <div class="agent-grid">
+        <button class="agent-card active" data-agent="1">
+          <div class="agent-top">
+            <span class="agent-badge" id="agent1Badge">وکیل ۱</span>
+            <span class="agent-icon">🧾</span>
+          </div>
+          <strong id="agent1Name">دفتر اول</strong>
+          <small id="agent1Desc">دریافت مستقل اطلاعات پرداخت</small>
+          <div class="agent-decor"></div>
+        </button>
+
+        <button class="agent-card" data-agent="2">
+          <div class="agent-top">
+            <span class="agent-badge" id="agent2Badge">وکیل ۲</span>
+            <span class="agent-icon">💳</span>
+          </div>
+          <strong id="agent2Name">دفتر دوم</strong>
+          <small id="agent2Desc">دریافت مستقل اطلاعات پرداخت</small>
+          <div class="agent-decor"></div>
+        </button>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <div class="panel-head">
+        <div>
+          <h2 id="payInfoTitle">اطلاعات پرداخت</h2>
+          <p class="muted" id="payInfoSubtitle">اطلاعات نمایشی مربوط به وکیل انتخاب‌شده</p>
+        </div>
+        <div class="panel-icon">💳</div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-card accent-blue">
+          <span id="selectedAmountTextLabel">مبلغ انتخابی</span>
+          <strong id="selectedAmountText">10 USD</strong>
+        </div>
+        <div class="summary-card accent-green">
+          <span id="selectedAgentTextLabel">وکیل انتخاب‌شده</span>
+          <strong id="selectedAgentText">دفتر اول</strong>
+        </div>
+      </div>
+
+      <div class="payment-grid">
+        <div class="info-card">
+          <span id="masterLabel">شماره مستر</span>
+          <div class="info-value-row">
+            <code id="masterValue">1234 5678 9012 3456</code>
+            <button class="mini-btn copy-btn" data-copy-target="masterValue" id="copyMasterBtn">کپی</button>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <span id="zainLabel">زین‌کش</span>
+          <div class="info-value-row">
+            <code id="zainValue">0770 123 4567</code>
+            <button class="mini-btn copy-btn" data-copy-target="zainValue" id="copyZainBtn">کپی</button>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <span id="phoneLabel">تلفن</span>
+          <div class="info-value-row">
+            <code id="phoneValue">+964 770 123 4567</code>
+            <button class="mini-btn copy-btn" data-copy-target="phoneValue" id="copyPhoneBtn">کپی</button>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <span id="qrLabel">بارکد / QR</span>
+          <div class="info-value-row">
+            <code id="qrValue">QR-AGENT-1</code>
+            <button class="mini-btn copy-btn" data-copy-target="qrValue" id="copyQrBtn">کپی</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="name-box">
+        <label for="dedicationName" id="dedicationNameLabel">نام شخص / نام اهدایی</label>
+        <input
+          id="dedicationName"
+          type="text"
+          value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای"
+        />
+        <p class="name-note" id="dedicationNameNote">
+          نوشتن نام الزامی نیست؛ این بخش می‌تواند خالی بماند یا با نام مستعار تکمیل شود.
+        </p>
+      </div>
+
+      <div class="cta-row">
+        <button class="primary-btn" id="confirmBtn">اعلام پرداخت</button>
+        <button class="secondary-btn" id="contactBtn">تماس با وکیل</button>
+      </div>
+
+      <p class="helper-text" id="helperText">پس از پرداخت، روی «اعلام پرداخت» بزنید تا اطلاعات پرداخت خود را ثبت کنید.</p>
+    </section>
+
+    <section class="panel glass hidden" id="reportSection">
+      <div class="panel-head">
+        <div>
+          <h2 id="reportTitle">اعلام پرداخت</h2>
+          <p class="muted" id="reportSubtitle">فرم نمایشی برای ثبت اطلاعات پرداخت</p>
+        </div>
+        <div class="panel-icon">📝</div>
+      </div>
+
+      <form id="reportForm" class="report-form">
+        <div class="form-group">
+          <label for="payerName" id="payerNameLabel">نام پرداخت‌کننده</label>
+          <input id="payerName" type="text" placeholder="نام شما" />
+        </div>
+
+        <div class="form-group">
+          <label for="payerContact" id="payerContactLabel">شماره تماس / پیام‌رسان</label>
+          <input id="payerContact" type="text" placeholder="مثلاً 0770..." />
+        </div>
+
+        <div class="form-group">
+          <label for="payerCountry" id="payerCountryLabel">کشور</label>
+          <select id="payerCountry">
+            <option value="Iraq">Iraq</option>
+            <option value="Iran">Iran</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+            <option value="Turkey">Turkey</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Spain">Spain</option>
+            <option value="United States">United States</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Lebanon">Lebanon</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="reportDedicationName" id="reportDedicationLabel">نام ثبت‌شونده</label>
+          <input
+            id="reportDedicationName"
+            type="text"
+            value="محمد علی محسن - به نیابت از : شهید آیت الله العظمی امام خامنه ای"
+          />
+        </div>
+
+        <div class="form-group full">
+          <label for="paymentNote" id="paymentNoteLabel">توضیحات</label>
+          <textarea id="paymentNote" rows="4" placeholder="زمان پرداخت، مبلغ، توضیح کوتاه..."></textarea>
+        </div>
+
+        <div class="cta-row">
+          <button type="submit" class="primary-btn" id="submitReportBtn">ثبت اطلاعات</button>
+        </div>
+      </form>
+
+      <div class="success-box hidden" id="successBox">
+        <strong id="successTitle">اطلاعات شما ثبت شد</strong>
+        <p id="successText">این نسخه آزمایشی است. در مرحله بعد ثبت واقعی را به تلگرام، ایمیل یا پایگاه داده وصل می‌کنیم.</p>
+      </div>
+    </section>
+
+    <section class="panel glass reports-panel">
+      <div class="panel-head">
+        <div>
+          <h2 id="reportsMainTitle">گزارشات</h2>
+          <p class="muted" id="reportsMainSubtitle">نمایش نمونه‌ای از گزارش‌های اخیر و پراکندگی کشوری</p>
+        </div>
+        <div class="panel-icon">📊</div>
+      </div>
+
+      <div class="report-stats-grid">
+        <div class="stat-card accent-blue">
+          <span id="statTotalReportsLabel">کل گزارشات</span>
+          <strong id="statTotalReports">20</strong>
+        </div>
+        <div class="stat-card accent-gold">
+          <span id="statCountriesLabel">کشورهای مشارکت‌کننده</span>
+          <strong id="statCountries">0</strong>
+        </div>
+        <div class="stat-card accent-green">
+          <span id="statTotalAmountLabel">مجموع نمونه مبالغ</span>
+          <strong id="statTotalAmount">0 USD</strong>
+        </div>
+      </div>
+
+      <div class="reports-layout">
+        <div class="map-card">
+          <div class="sub-head">
+            <h3 id="worldMapTitle">گزارش کشوری</h3>
+            <p id="worldMapSubtitle">کشورهای دارای گزارش روی نقشه و در جدول زیر نمایش داده شده‌اند.</p>
+          </div>
+
+          <div class="world-map-wrap">
+            <svg id="worldMap" viewBox="0 0 1000 500" class="world-map" aria-label="World map">
+              <defs>
+                <linearGradient id="oceanGradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f8fbff"></stop>
+                  <stop offset="100%" stop-color="#e8f1ff"></stop>
+                </linearGradient>
+              </defs>
+
+              <rect x="0" y="0" width="1000" height="500" rx="24" class="map-ocean"></rect>
+
+              <path class="continent" d="M88,133 C125,100 172,102 214,109 C256,116 289,133 304,158 C311,170 311,184 296,190 C270,201 252,219 248,244 C244,267 220,282 188,280 C152,278 113,261 96,236 C82,214 71,194 60,176 C52,162 59,145 88,133 Z"></path>
+              <path class="continent" d="M250,287 C281,279 308,285 326,304 C342,322 344,349 336,375 C327,402 307,429 283,450 C262,468 233,468 216,449 C199,430 195,404 198,379 C203,347 221,315 250,287 Z"></path>
+              <path class="continent" d="M440,110 C485,91 532,93 581,98 C636,103 701,107 757,127 C815,148 868,172 893,214 C906,236 900,255 872,261 C849,267 832,278 822,295 C813,311 795,321 763,319 C730,316 703,307 674,310 C636,314 604,333 563,339 C525,344 483,336 461,312 C440,290 434,264 433,235 C432,207 413,189 400,171 C387,153 398,128 440,110 Z"></path>
+              <path class="continent" d="M528,350 C555,346 580,353 597,368 C613,382 621,401 621,423 C620,445 611,465 594,478 C575,491 549,495 526,490 C503,486 490,472 487,452 C483,432 489,408 500,390 C509,374 514,358 528,350 Z"></path>
+              <path class="continent" d="M793,347 C823,335 854,341 875,359 C896,377 904,403 899,431 C895,456 878,474 854,484 C830,494 802,491 785,474 C768,458 764,435 769,412 C773,389 778,361 793,347 Z"></path>
+
+              <g id="mapMarkers"></g>
+            </svg>
+          </div>
+
+          <div class="country-table-wrap">
+            <table class="country-table">
+              <thead>
+                <tr>
+                  <th id="countryTableCountry">کشور</th>
+                  <th id="countryTableCount">تعداد</th>
+                  <th id="countryTableAmount">جمع مبلغ</th>
+                </tr>
+              </thead>
+              <tbody id="countryTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="recent-card">
+          <div class="sub-head">
+            <h3 id="recentReportsTitle">20 گزارش آخر</h3>
+            <p id="recentReportsSubtitle">آخرین گزارش‌های ثبت‌شده به‌صورت نمایشی</p>
+          </div>
+
+          <div class="recent-list" id="recentReportsList"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer glass">
+      <div class="footer-content">
+        <div class="footer-badge">⚙️</div>
+        <p id="footerText">
+          توسعه داده شده توسط:
+          <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">
+            جامعة المصطفی العالمیة - نمایندگی عراق
+          </a>
+        </p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
