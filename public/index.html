@@ -7,10 +7,164 @@
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <main class="container">
-    <h1>صفحه جمع‌آوری کمک</h1>
-    <p>نسخه اولیه سایت با موفقیت روی Cloudflare آماده شد.</p>
-    <a class="btn" href="#">شروع</a>
+  <div class="page-bg"></div>
+
+  <main class="app">
+    <header class="hero">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="fa">فارسی</button>
+        <button class="lang-btn" data-lang="ar">العربية</button>
+        <button class="lang-btn" data-lang="en">English</button>
+      </div>
+
+      <div class="hero-card">
+        <h1 id="title">صفحه جمع‌آوری کمک</h1>
+        <p id="subtitle">
+          برای حمایت، مبلغ مورد نظر و وکیل دریافت‌کننده را انتخاب کنید.
+        </p>
+      </div>
+    </header>
+
+    <section class="section card">
+      <div class="section-head">
+        <h2 id="amountTitle">انتخاب مبلغ</h2>
+        <span class="muted" id="currencyLabel">ارز: دلار</span>
+      </div>
+
+      <div class="amount-grid" id="amountGrid">
+        <button class="amount-btn active" data-amount="10">10</button>
+        <button class="amount-btn" data-amount="25">25</button>
+        <button class="amount-btn" data-amount="50">50</button>
+        <button class="amount-btn" data-amount="100">100</button>
+        <button class="amount-btn" data-amount="250">250</button>
+        <button class="amount-btn" data-amount="500">500</button>
+      </div>
+
+      <div class="custom-amount-row">
+        <label for="customAmount" id="customAmountLabel">مبلغ دلخواه</label>
+        <input id="customAmount" type="number" min="1" placeholder="مثلاً 75" />
+      </div>
+
+      <p class="notice" id="amountNotice">
+        مبالغ بالاتر از 1000 دلار پس از تأیید نهایی ثبت می‌شوند.
+      </p>
+    </section>
+
+    <section class="section card">
+      <div class="section-head">
+        <h2 id="agentTitle">انتخاب وکیل دریافت‌کننده</h2>
+      </div>
+
+      <div class="agent-grid">
+        <button class="agent-card active" data-agent="1">
+          <span class="agent-badge" id="agent1Badge">وکیل ۱</span>
+          <strong id="agent1Name">دفتر اول</strong>
+          <small id="agent1Desc">دریافت مستقل اطلاعات پرداخت</small>
+        </button>
+
+        <button class="agent-card" data-agent="2">
+          <span class="agent-badge" id="agent2Badge">وکیل ۲</span>
+          <strong id="agent2Name">دفتر دوم</strong>
+          <small id="agent2Desc">دریافت مستقل اطلاعات پرداخت</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="section card">
+      <div class="section-head">
+        <h2 id="payInfoTitle">اطلاعات پرداخت</h2>
+      </div>
+
+      <div class="summary-box">
+        <div class="summary-item">
+          <span id="selectedAmountTextLabel">مبلغ انتخابی</span>
+          <strong id="selectedAmountText">10 USD</strong>
+        </div>
+        <div class="summary-item">
+          <span id="selectedAgentTextLabel">وکیل انتخاب‌شده</span>
+          <strong id="selectedAgentText">دفتر اول</strong>
+        </div>
+      </div>
+
+      <div class="info-list">
+        <div class="info-row">
+          <span id="masterLabel">شماره مستر</span>
+          <div class="info-value-wrap">
+            <code id="masterValue">1234 5678 9012 3456</code>
+            <button class="mini-btn copy-btn" data-copy-target="masterValue" id="copyMasterBtn">کپی</button>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <span id="zainLabel">زین‌کش</span>
+          <div class="info-value-wrap">
+            <code id="zainValue">0770 123 4567</code>
+            <button class="mini-btn copy-btn" data-copy-target="zainValue" id="copyZainBtn">کپی</button>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <span id="phoneLabel">تلفن</span>
+          <div class="info-value-wrap">
+            <code id="phoneValue">+964 770 123 4567</code>
+            <button class="mini-btn copy-btn" data-copy-target="phoneValue" id="copyPhoneBtn">کپی</button>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <span id="qrLabel">بارکد / QR</span>
+          <div class="info-value-wrap qr-wrap">
+            <code id="qrValue">QR-AGENT-1</code>
+            <button class="mini-btn copy-btn" data-copy-target="qrValue" id="copyQrBtn">کپی</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="primary-btn" id="confirmBtn">اعلام پرداخت</button>
+        <button class="secondary-btn" id="contactBtn">تماس با وکیل</button>
+      </div>
+
+      <p class="helper-text" id="helperText">
+        پس از پرداخت، روی «اعلام پرداخت» بزنید تا اطلاعات پرداخت خود را ثبت کنید.
+      </p>
+    </section>
+
+    <section class="section card hidden" id="reportSection">
+      <div class="section-head">
+        <h2 id="reportTitle">اعلام پرداخت</h2>
+      </div>
+
+      <form id="reportForm" class="report-form">
+        <div class="form-row">
+          <label for="payerName" id="payerNameLabel">نام پرداخت‌کننده</label>
+          <input id="payerName" type="text" placeholder="نام شما" />
+        </div>
+
+        <div class="form-row">
+          <label for="payerContact" id="payerContactLabel">شماره تماس / پیام‌رسان</label>
+          <input id="payerContact" type="text" placeholder="مثلاً 0770..." />
+        </div>
+
+        <div class="form-row">
+          <label for="paymentNote" id="paymentNoteLabel">توضیحات</label>
+          <textarea id="paymentNote" rows="4" placeholder="زمان پرداخت، مبلغ، توضیح کوتاه..."></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary-btn" id="submitReportBtn">ثبت اطلاعات</button>
+        </div>
+      </form>
+
+      <div class="success-box hidden" id="successBox">
+        <strong id="successTitle">اطلاعات شما ثبت شد</strong>
+        <p id="successText">
+          این نسخه آزمایشی است. در مرحله بعد ثبت واقعی را به تلگرام، ایمیل یا پایگاه داده وصل می‌کنیم.
+        </p>
+      </div>
+    </section>
   </main>
+
+  <script src="./script.js"></script>
 </body>
 </html>
