@@ -47,7 +47,7 @@ const i18n = {
 
 let currentLang="fa", selectedCurrency="USD", selectedAmount=currencyPresets.USD[0], selectedAgent=1;
 let reportCache={recent:[],countries:[],stats:{total_reports:0,total_amount:0,countries_count:0}};
-let activeCountry=null, worldFeatures=null, featureNameMap=new Map(), countryAmountMap=new Map();
+let activeCountry=null, countryAmountMap=new Map();
 
 const $ = id => document.getElementById(id);
 const reportDisplayInput = $("reportDisplayName");
@@ -73,7 +73,7 @@ function applyLanguage(lang){
   $("customAmount").placeholder=t.customAmountLabel; $("payerContact").placeholder=t.payerContactPlaceholder; $("note").placeholder=t.notePlaceholder; setPlaceholderField(reportDisplayInput,t.reportDisplayPlaceholder);
   document.querySelectorAll(".lang-btn").forEach(btn=>btn.classList.toggle("active", btn.dataset.lang===currentLang));
   document.querySelectorAll(".copy-btn").forEach(btn=>btn.textContent=t.copy);
-  renderAmounts(); updatePaymentInfo(); renderReports(); if(worldFeatures) renderWorldMap();
+  renderAmounts(); updatePaymentInfo(); renderReports(); updateMapColors();
 }
 
 function formatAmount(amount,currency){ const locale=currentLang==="fa"?"fa-IR":currentLang==="ar"?"ar-IQ":"en-US"; return `${new Intl.NumberFormat(locale).format(amount)} ${currency}`; }
@@ -81,13 +81,13 @@ function renderAmounts(){ const grid=$("amountGrid"); grid.innerHTML=""; for(con
 function effectiveAmount(){ const custom=Number($("customAmount").value); return custom>0?custom:selectedAmount; }
 function updatePaymentInfo(){ const agent=agents[selectedAgent]; $("selectedCurrency").textContent=selectedCurrency; $("selectedAmount").textContent=formatAmount(effectiveAmount(),selectedCurrency); $("selectedAgent").textContent=agentName(selectedAgent); $("contactValue").textContent=agent.contact; $("zainValue").textContent=agent.zain; $("masterValue").textContent=agent.master; $("qrImage").src=agent.qr; $("qrImage").alt=agentName(selectedAgent); }
 
-document.querySelectorAll(".currency-btn").forEach(btn=>btn.onclick=()=>{ selectedCurrency=btn.dataset.currency; selectedAmount=currencyPresets[selectedCurrency][0]; $("customAmount").value=""; document.querySelectorAll(".currency-btn").forEach(b=>b.classList.toggle("active",b===btn)); renderAmounts(); updatePaymentInfo(); renderReports(); if(worldFeatures) renderWorldMap(); });
+document.querySelectorAll(".currency-btn").forEach(btn=>btn.onclick=()=>{ selectedCurrency=btn.dataset.currency; selectedAmount=currencyPresets[selectedCurrency][0]; $("customAmount").value=""; document.querySelectorAll(".currency-btn").forEach(b=>b.classList.toggle("active",b===btn)); renderAmounts(); updatePaymentInfo(); renderReports(); updateMapColors(); });
 document.querySelectorAll(".agent-card").forEach(card=>card.onclick=()=>{ selectedAgent=Number(card.dataset.agent); document.querySelectorAll(".agent-card").forEach(c=>c.classList.toggle("active",c===card)); updatePaymentInfo(); });
 $("customAmount").addEventListener("input", updatePaymentInfo);
 document.querySelectorAll(".copy-btn").forEach(btn=>btn.onclick=async()=>{ const target=$(btn.dataset.copyTarget), original=i18n[currentLang].copy; try{ await navigator.clipboard.writeText(target.textContent.trim()); btn.textContent=i18n[currentLang].copied; setTimeout(()=>btn.textContent=original,1200);}catch{ alert(target.textContent.trim()); }});
 $("showReportBtn").onclick=()=>{ $("reportSection").classList.remove("hidden"); setPlaceholderField(reportDisplayInput,i18n[currentLang].reportDisplayPlaceholder); $("pageLoadedAt").value=String(Date.now()); $("reportSection").scrollIntoView({behavior:"smooth",block:"start"}); };
 $("callAgentBtn").onclick=()=>{ const phone=agents[selectedAgent].contact.replace(/\s+/g,""); window.location.href=`tel:${phone}`; };
-$("clearCountryFilter").onclick=()=>{ activeCountry=null; $("activeCountryLabel").textContent=i18n[currentLang].allCountries; renderReports(); if(worldFeatures) renderWorldMap(); };
+$("clearCountryFilter").onclick=()=>{ activeCountry=null; $("activeCountryLabel").textContent=i18n[currentLang].allCountries; renderReports(); updateMapColors(); };
 
 function renderCountryTable(rows){ const tbody=$("countryTableBody"); tbody.innerHTML=""; rows.forEach(row=>{ const tr=document.createElement("tr"); tr.innerHTML=`<td>${escapeHtml(row.country)}</td><td>${row.count}</td><td>${formatAmount(Number(row.amount||0), selectedCurrency)}</td>`; tbody.appendChild(tr); }); }
 function getFilteredRecent(){ const recent=reportCache.recent||[]; return activeCountry?recent.filter(r=>r.country===activeCountry):recent; }
@@ -165,7 +165,85 @@ function renderWorldMap(){
     });
 }
 
-function renderReports(){ renderCountryTable(reportCache.countries||[]); renderRecent(getFilteredRecent()); renderStats(reportCache.stats||{total_reports:0,total_amount:0,countries_count:0}); buildCountryAmountMap(reportCache.countries||[]); }
+
+function renderReports(){
+  renderCountryTable(reportCache.countries||[]);
+  renderRecent(getFilteredRecent());
+  renderStats(reportCache.stats||{total_reports:0,total_amount:0,countries_count:0});
+  buildCountryAmountMap(reportCache.countries||[]);
+}
+
+function getMapItemByFeatureName(featureName){
+  return countryAmountMap.get(normalizeName(featureName));
+}
+
+function updateMapColors(){
+  const svg = document.querySelector("#worldMapContainer svg");
+  if(!svg) return;
+  const values = [...new Set([...countryAmountMap.values()].map(v=>v.amount))];
+  const max = values.length ? Math.max(...values) : 0;
+
+  function lerp(a,b,t){ return Math.round(a+(b-a)*t); }
+  function colorFor(value){
+    if(!max) return "#dbe7fb";
+    const t = Math.max(0, Math.min(1, value / max));
+    const r = lerp(219, 29, t), g = lerp(231, 78, t), b = lerp(251, 216, t);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  svg.querySelectorAll(".map-country").forEach(el=>{
+    const item = getMapItemByFeatureName(el.dataset.name || "");
+    el.setAttribute("fill", item ? colorFor(item.amount) : "#dbe7fb");
+    if(activeCountry && item?.country === activeCountry){
+      el.classList.add("active-country");
+    }else{
+      el.classList.remove("active-country");
+    }
+  });
+}
+
+function bindMapEvents(){
+  const wrap = document.getElementById("worldMapContainer");
+  const tooltip = document.getElementById("mapTooltip");
+  const svg = wrap.querySelector("svg");
+  if(!svg) return;
+
+  svg.querySelectorAll(".map-country").forEach(el=>{
+    el.addEventListener("mousemove", (event)=>{
+      const item = getMapItemByFeatureName(el.dataset.name || "");
+      const cname = item?.country || (el.dataset.name || "");
+      const count = item?.count || 0;
+      const amount = item?.amount || 0;
+      tooltip.classList.remove("hidden");
+      const rect = wrap.getBoundingClientRect();
+      tooltip.style.left = `${event.clientX - rect.left + 18}px`;
+      tooltip.style.top = `${event.clientY - rect.top + 18}px`;
+      tooltip.innerHTML = `<strong>${escapeHtml(cname)}</strong><br>${i18n[currentLang].tableCount}: ${count}<br>${i18n[currentLang].tableAmount}: ${formatAmount(amount, selectedCurrency)}`;
+    });
+    el.addEventListener("mouseleave", ()=> tooltip.classList.add("hidden"));
+    el.addEventListener("click", ()=>{
+      const item = getMapItemByFeatureName(el.dataset.name || "");
+      activeCountry = item?.country || null;
+      $("activeCountryLabel").textContent = activeCountry ? `${i18n[currentLang].reportCountry}: ${activeCountry}` : i18n[currentLang].allCountries;
+      renderReports();
+      updateMapColors();
+    });
+  });
+}
+
+async function initWorldMap(){
+  try{
+    const res = await fetch("/world-map.svg");
+    const text = await res.text();
+    $("worldMapContainer").innerHTML = text;
+    bindMapEvents();
+    updateMapColors();
+  }catch(e){
+    console.error("map load failed", e);
+    $("worldMapContainer").innerHTML = '<div class="report-note">Map failed to load.</div>';
+  }
+}
+
 
 async function loadReports(){
   try{
@@ -176,7 +254,7 @@ async function loadReports(){
     reportCache.stats = await statsRes.json();
   }catch(e){ console.error(e); }
   renderReports();
-  if(worldFeatures) renderWorldMap();
+  updateMapColors();
 }
 
 $("reportForm").addEventListener("submit", async (e)=>{
