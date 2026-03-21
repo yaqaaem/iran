@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>جمع آوری کمکهای مردمی به انقلاب اسلامی ایران</title>
-  <meta name="build-version" content="2026.03.21-132538">
+  <meta name="build-version" content="2026.03.21-140209">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
@@ -278,14 +279,12 @@
         <div class="map-panel">
           <div class="sub-head">
             <h3 id="countryReportTitle">گزارش کشوری</h3>
-            <p id="countryReportSubtitle">کشورهای ثبت‌شده روی نقشه و در جدول زیر نمایش داده می‌شوند.</p>
+            <p id="countryReportSubtitle">نقشه حرارتی تعاملی: شدت رنگ بر اساس مجموع مبلغ، کلیک روی کشور برای دیدن گزارش‌های همان کشور.</p>
           </div>
 
           <div class="map-wrap">
-            <div class="map-image-wrap">
-              <img src="/world-map.svg" alt="World Map" class="world-map-img" />
-              <div id="mapMarkers" class="map-markers"></div>
-            </div>
+            <div id="worldMapContainer" class="world-map-container"></div>
+            <div id="mapTooltip" class="map-tooltip hidden"></div>
           </div>
 
           <div class="table-wrap">
@@ -307,6 +306,10 @@
             <h3 id="recentReportsTitle">۲۰ گزارش آخر</h3>
             <p id="recentReportsSubtitle">آخرین گزارش‌های ثبت‌شده در پایگاه داده</p>
           </div>
+          <div class="country-filter-bar">
+            <span id="activeCountryLabel" class="muted">فیلتر کشور: همه</span>
+            <button id="clearCountryFilter" class="mini-btn">نمایش همه</button>
+          </div>
           <div class="recent-list" id="recentList"></div>
         </div>
       </div>
@@ -319,11 +322,13 @@
       </div>
       <div class="footer-meta">
         <span id="buildVersionLabel">نسخه استقرار:</span>
-        <code id="buildVersion">2026.03.21-134046</code>
+        <code id="buildVersion">2026.03.21-140209</code>
       </div>
     </footer>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
   <script src="/script.js"></script>
 </body>
 </html>

@@ -90,16 +90,17 @@ code{flex:1;background:#f8fbff;border:1px dashed #cdd9eb;border-radius:14px;padd
 .honeypot{position:absolute !important;left:-9999px !important;opacity:0 !important;pointer-events:none !important}
 .success{background:rgba(16,155,98,.08);border:1px solid rgba(16,155,98,.22)}
 .success strong{display:block;margin-bottom:8px;color:var(--green)}
-.reports-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.reports-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
 .map-panel,.recent-panel{background:rgba(255,255,255,.56);border:1px solid rgba(255,255,255,.76);border-radius:24px;padding:18px}
 .sub-head h3{margin:0 0 8px;font-size:22px}
-.map-wrap{margin-top:14px;background:linear-gradient(180deg,#f9fbff,#eef5ff);border:1px solid #dbe7f7;border-radius:22px;padding:12px}
-.map-image-wrap{position:relative}
-.world-map-img{display:block;width:100%;height:auto;border-radius:14px}
-.map-markers{position:absolute;inset:0}
-.map-marker{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:6px}
-.map-dot{width:14px;height:14px;border-radius:999px;background:#2563eb;border:3px solid #fff;box-shadow:0 0 0 4px rgba(37,99,235,.10)}
-.map-label{background:rgba(255,255,255,.92);border:1px solid #d7e4f6;border-radius:999px;padding:4px 8px;font-size:12px;color:#1a2d4a;white-space:nowrap}
+.map-wrap{margin-top:14px;background:linear-gradient(180deg,#f9fbff,#eef5ff);border:1px solid #dbe7f7;border-radius:22px;padding:12px;position:relative}
+.world-map-container{width:100%;height:420px;overflow:hidden}
+.world-map-container svg{width:100%;height:100%;display:block}
+.world-map-container .country{fill:#dbe7fb;stroke:#9fb7de;stroke-width:.7;transition:fill .2s, stroke .2s;cursor:pointer}
+.world-map-container .country:hover{stroke:#345ea8;stroke-width:1.2}
+.world-map-container .country.active-country{stroke:#102e66;stroke-width:1.6}
+.map-tooltip{position:absolute;z-index:20;min-width:140px;max-width:240px;background:rgba(17,25,40,.92);color:#fff;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.7;pointer-events:none;box-shadow:0 12px 28px rgba(0,0,0,.2)}
+.country-filter-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px}
 .table-wrap{margin-top:14px;overflow:auto}
 .country-table{width:100%;border-collapse:collapse;font-size:14px}
 .country-table th,.country-table td{text-align:start;padding:12px 10px;border-bottom:1px solid #e5ecf6}
@@ -122,4 +123,4 @@ code{flex:1;background:#f8fbff;border:1px dashed #cdd9eb;border-radius:14px;padd
 body[dir="ltr"] .hero,body[dir="ltr"] .panel,body[dir="ltr"] .agent-card,body[dir="ltr"] .summary-card,body[dir="ltr"] .info-card,body[dir="ltr"] .report-item,body[dir="ltr"] .footer{text-align:left}
 body[dir="rtl"] .feature-card{text-align:right}
 @media (max-width:1100px){.hero-features,.reports-layout{grid-template-columns:1fr}}
-@media (max-width:860px){.hero-stats,.summary-grid,.stats-grid,.amount-grid,.agent-grid,.payment-grid,.form-grid{grid-template-columns:1fr}.panel{padding:18px}.hero{padding:28px 18px 22px}.hero p{font-size:16px}.panel-head h2{font-size:24px}}
+@media (max-width:860px){.hero-stats,.summary-grid,.stats-grid,.amount-grid,.agent-grid,.payment-grid,.form-grid{grid-template-columns:1fr}.panel{padding:18px}.hero{padding:28px 18px 22px}.hero p{font-size:16px}.panel-head h2{font-size:24px}.world-map-container{height:320px}}

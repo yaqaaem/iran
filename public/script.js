@@ -1,23 +1,14 @@
 
-const countryMeta = {
-  Iraq: { flag: "🇮🇶", x: 62.5, y: 41.0 },
-  Iran: { flag: "🇮🇷", x: 65.5, y: 40.0 },
-  Germany: { flag: "🇩🇪", x: 49.0, y: 24.0 },
-  France: { flag: "🇫🇷", x: 47.0, y: 27.0 },
-  Turkey: { flag: "🇹🇷", x: 57.0, y: 34.0 },
-  Pakistan: { flag: "🇵🇰", x: 69.0, y: 45.0 },
-  Brazil: { flag: "🇧🇷", x: 29.5, y: 68.0 },
-  Spain: { flag: "🇪🇸", x: 44.0, y: 30.0 },
-  "United States": { flag: "🇺🇸", x: 20.0, y: 30.0 },
-  "United Kingdom": { flag: "🇬🇧", x: 46.0, y: 22.0 },
-  Afghanistan: { flag: "🇦🇫", x: 67.0, y: 42.0 },
-  Lebanon: { flag: "🇱🇧", x: 59.0, y: 38.0 }
-};
-
 const currencyPresets = {
   USD: [10, 25, 50, 100, 250, 500],
   IQD: [10000, 25000, 50000, 100000, 250000, 500000],
   EUR: [10, 20, 50, 100, 200, 500]
+};
+
+const agentCountryMap = {
+  Iraq: "IRQ", Iran: "IRN", Germany: "DEU", France: "FRA", Turkey: "TUR",
+  Pakistan: "PAK", Brazil: "BRA", Spain: "ESP", "United States": "USA",
+  "United Kingdom": "GBR", Afghanistan: "AFG", Lebanon: "LBN"
 };
 
 const agents = {
@@ -75,14 +66,15 @@ const baseFa = {
   submitReportBtn:"ثبت اطلاعات", successTitle:"گزارش با موفقیت ثبت شد", successText:"اطلاعات شما در پایگاه داده ذخیره شد و در بخش گزارشات نیز بازتاب پیدا می‌کند.",
   reportsTitle:"گزارشات", reportsSubtitle:"۲۰ گزارش آخر و پراکندگی کشوری از پایگاه داده D1",
   statReportsLabel:"کل گزارشات", statCountriesLabel:"کشورهای مشارکت‌کننده", statAmountLabel:"مجموع مبالغ",
-  countryReportTitle:"گزارش کشوری", countryReportSubtitle:"کشورهای ثبت‌شده روی نقشه و در جدول زیر نمایش داده می‌شوند.",
+  countryReportTitle:"گزارش کشوری", countryReportSubtitle:"نقشه حرارتی تعاملی: شدت رنگ بر اساس مجموع مبلغ، کلیک روی کشور برای دیدن گزارش‌های همان کشور.",
   recentReportsTitle:"۲۰ گزارش آخر", recentReportsSubtitle:"آخرین گزارش‌های ثبت‌شده در پایگاه داده",
   tableCountry:"کشور", tableCount:"تعداد", tableAmount:"جمع مبلغ",
   footerText:'توسعه داده شده توسط: <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">جامعة المصطفی العالمیة - نمایندگی عراق</a>',
   buildVersionLabel:"نسخه استقرار:",
   reportCountry:"کشور", reportAmount:"مبلغ", reportAgent:"وکیل", reportTime:"زمان", noReports:"هنوز گزارشی ثبت نشده است.", noNote:"بدون توضیح",
   spamTooFast:"خیلی سریع فرم را ارسال کرده‌اید. چند ثانیه بعد دوباره تلاش کنید.",
-  spamDuplicate:"درخواست تکراری شناسایی شد."
+  allCountries:"فیلتر کشور: همه",
+  clearAll:"نمایش همه"
 };
 
 const baseAr = {
@@ -111,14 +103,15 @@ const baseAr = {
   submitReportBtn:"تسجيل المعلومات", successTitle:"تم تسجيل التقرير بنجاح", successText:"تم حفظ معلوماتك في قاعدة البيانات وستنعكس في قسم التقارير.",
   reportsTitle:"التقارير", reportsSubtitle:"آخر 20 تقريراً والتوزع الجغرافي من قاعدة بيانات D1",
   statReportsLabel:"إجمالي التقارير", statCountriesLabel:"الدول المشاركة", statAmountLabel:"مجموع المبالغ",
-  countryReportTitle:"التقرير حسب الدولة", countryReportSubtitle:"الدول المسجلة تظهر على الخريطة وفي الجدول أدناه.",
+  countryReportTitle:"التقرير حسب الدولة", countryReportSubtitle:"خريطة حرارية تفاعلية: شدة اللون بحسب مجموع المبلغ، والنقر على الدولة يعرض تقاريرها.",
   recentReportsTitle:"آخر 20 تقريراً", recentReportsSubtitle:"أحدث التقارير المسجلة في قاعدة البيانات",
   tableCountry:"الدولة", tableCount:"العدد", tableAmount:"مجموع المبلغ",
   footerText:'تم التطوير بواسطة: <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">جامعة المصطفى العالمية - ممثلية العراق</a>',
   buildVersionLabel:"نسخة النشر:",
   reportCountry:"الدولة", reportAmount:"المبلغ", reportAgent:"الوكيل", reportTime:"الوقت", noReports:"لا توجد تقارير بعد.", noNote:"بلا ملاحظات",
   spamTooFast:"تم إرسال النموذج بسرعة كبيرة. حاول بعد بضع ثوانٍ.",
-  spamDuplicate:"تم اكتشاف طلب مكرر."
+  allCountries:"تصفية الدولة: الكل",
+  clearAll:"عرض الكل"
 };
 
 const baseEn = {
@@ -147,14 +140,15 @@ const baseEn = {
   submitReportBtn:"Submit information", successTitle:"Report submitted successfully", successText:"Your information has been saved to the database and reflected in the reports section.",
   reportsTitle:"Reports", reportsSubtitle:"Latest 20 reports and country distribution from the D1 database",
   statReportsLabel:"Total reports", statCountriesLabel:"Participating countries", statAmountLabel:"Total amount",
-  countryReportTitle:"Country report", countryReportSubtitle:"Registered countries are shown on the map and in the table below.",
+  countryReportTitle:"Country report", countryReportSubtitle:"Interactive heatmap: color intensity follows total amount, click a country to filter its reports.",
   recentReportsTitle:"Latest 20 reports", recentReportsSubtitle:"Most recent reports stored in the database",
   tableCountry:"Country", tableCount:"Count", tableAmount:"Total amount",
   footerText:'Developed by: <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">Al-Mustafa International University - Iraq Office</a>',
   buildVersionLabel:"Deployment version:",
   reportCountry:"Country", reportAmount:"Amount", reportAgent:"Agent", reportTime:"Time", noReports:"No reports yet.", noNote:"No note",
   spamTooFast:"You submitted too quickly. Please try again in a few seconds.",
-  spamDuplicate:"Duplicate submission detected."
+  allCountries:"Country filter: All",
+  clearAll:"Show all"
 };
 
 const i18n = { fa: baseFa, ar: baseAr, en: baseEn };
@@ -165,6 +159,9 @@ let selectedCurrency = "USD";
 let selectedAmount = currencyPresets.USD[0];
 let selectedAgent = 1;
 let reportCache = { recent: [], countries: [], stats: { total_reports: 0, total_amount: 0, countries_count: 0 } };
+let activeCountry = null;
+let worldFeatures = null;
+let countryAmountMap = new Map();
 
 const $ = (id) => document.getElementById(id);
 const reportDisplayInput = $("reportDisplayName");
@@ -234,6 +231,8 @@ function applyLanguage(lang){
 
   document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === currentLang));
   document.querySelectorAll(".copy-btn").forEach(btn => btn.textContent = t.copy);
+  $("activeCountryLabel").textContent = activeCountry ? `${i18n[currentLang].reportCountry}: ${activeCountry}` : t.allCountries;
+  $("clearCountryFilter").textContent = t.clearAll;
 
   renderAmounts();
   updatePaymentInfo();
@@ -287,6 +286,8 @@ document.querySelectorAll(".currency-btn").forEach(btn => {
     document.querySelectorAll(".currency-btn").forEach(b => b.classList.toggle("active", b === btn));
     renderAmounts();
     updatePaymentInfo();
+    renderReports();
+    if (worldFeatures) renderWorldMap(worldFeatures);
   });
 });
 
@@ -326,30 +327,26 @@ $("callAgentBtn").addEventListener("click", () => {
   window.location.href = `tel:${phone}`;
 });
 
+$("clearCountryFilter").addEventListener("click", () => {
+  activeCountry = null;
+  $("activeCountryLabel").textContent = i18n[currentLang].allCountries;
+  renderReports();
+  if (worldFeatures) renderWorldMap(worldFeatures);
+});
+
 function renderCountryTable(rows){
   const tbody = $("countryTableBody");
   tbody.innerHTML = "";
   for (const row of rows) {
-    const meta = countryMeta[row.country] || { flag: "🌍" };
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${meta.flag} ${escapeHtml(row.country)}</td><td>${row.count}</td><td>${formatAmount(Number(row.amount || 0), row.currency || selectedCurrency)}</td>`;
+    tr.innerHTML = `<td>${escapeHtml(row.country)}</td><td>${row.count}</td><td>${formatAmount(Number(row.amount || 0), selectedCurrency)}</td>`;
     tbody.appendChild(tr);
   }
 }
 
-function renderMapMarkers(rows){
-  const holder = $("mapMarkers");
-  holder.innerHTML = "";
-  for (const row of rows) {
-    const meta = countryMeta[row.country];
-    if (!meta) continue;
-    const wrap = document.createElement("div");
-    wrap.className = "map-marker";
-    wrap.style.left = meta.x + "%";
-    wrap.style.top = meta.y + "%";
-    wrap.innerHTML = `<span class="map-dot"></span><span class="map-label">${meta.flag} ${row.count}</span>`;
-    holder.appendChild(wrap);
-  }
+function getFilteredRecent(){
+  const recent = reportCache.recent || [];
+  return activeCountry ? recent.filter(r => r.country === activeCountry) : recent;
 }
 
 function renderRecent(items){
@@ -360,14 +357,13 @@ function renderRecent(items){
     return;
   }
   for (const item of items) {
-    const meta = countryMeta[item.country] || { flag: "🌍" };
     const node = document.createElement("article");
     node.className = "report-item";
     node.innerHTML = `
       <div class="report-item-top">
         <div>
           <div class="report-name">${escapeHtml(item.display_name || "-")}</div>
-          <div class="report-meta">${meta.flag} ${i18n[currentLang].reportCountry}: ${escapeHtml(item.country || "-")}</div>
+          <div class="report-meta">${i18n[currentLang].reportCountry}: ${escapeHtml(item.country || "-")}</div>
         </div>
         <div class="report-meta">${i18n[currentLang].reportTime}: ${escapeHtml(item.created_at || "-")}</div>
       </div>
@@ -388,10 +384,94 @@ function renderStats(stats){
   $("heroReportsCount").textContent = stats.total_reports ?? 0;
 }
 
+function buildCountryAmountMap(rows){
+  countryAmountMap = new Map();
+  for (const row of rows) {
+    const iso = agentCountryMap[row.country];
+    if (iso) countryAmountMap.set(iso, { amount: Number(row.amount || 0), count: Number(row.count || 0), country: row.country });
+  }
+}
+
+async function initWorldMap(){
+  try {
+    const topo = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+    worldFeatures = topojson.feature(topo, topo.objects.countries).features;
+    renderWorldMap(worldFeatures);
+  } catch (e) {
+    console.error("map load failed", e);
+    $("worldMapContainer").innerHTML = '<div class="report-note">Map failed to load.</div>';
+  }
+}
+
+function renderWorldMap(features){
+  const container = d3.select("#worldMapContainer");
+  container.selectAll("*").remove();
+
+  const width = container.node().clientWidth || 700;
+  const height = container.node().clientHeight || 420;
+
+  const svg = container.append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("preserveAspectRatio", "xMidYMid meet");
+
+  const projection = d3.geoNaturalEarth1().fitSize([width, height], { type: "Sphere" });
+  const path = d3.geoPath(projection);
+
+  svg.append("path")
+    .datum({ type: "Sphere" })
+    .attr("fill", "#eef5ff")
+    .attr("d", path);
+
+  const amounts = Array.from(countryAmountMap.values()).map(v => v.amount);
+  const maxAmount = amounts.length ? Math.max(...amounts) : 0;
+  const color = d3.scaleLinear()
+    .domain([0, maxAmount || 1])
+    .range(["#dbe7fb", "#1d4ed8"]);
+
+  const tooltip = d3.select("#mapTooltip");
+
+  svg.append("g")
+    .selectAll("path")
+    .data(features)
+    .join("path")
+    .attr("class", d => {
+      const iso = d.id;
+      const active = activeCountry && countryAmountMap.get(iso)?.country === activeCountry;
+      return `country${active ? " active-country" : ""}`;
+    })
+    .attr("fill", d => {
+      const item = countryAmountMap.get(d.id);
+      return item ? color(item.amount) : "#dbe7fb";
+    })
+    .attr("d", path)
+    .on("mousemove", function(event, d) {
+      const item = countryAmountMap.get(d.id);
+      const countryName = item?.country || d.properties?.name || d.id;
+      const count = item?.count || 0;
+      const amount = item?.amount || 0;
+      tooltip
+        .classed("hidden", false)
+        .style("left", `${event.offsetX + 18}px`)
+        .style("top", `${event.offsetY + 18}px`)
+        .html(`<strong>${countryName}</strong><br>${i18n[currentLang].tableCount}: ${count}<br>${i18n[currentLang].tableAmount}: ${formatAmount(amount, selectedCurrency)}`);
+    })
+    .on("mouseleave", function() {
+      tooltip.classed("hidden", true);
+    })
+    .on("click", function(event, d) {
+      const item = countryAmountMap.get(d.id);
+      activeCountry = item?.country || null;
+      $("activeCountryLabel").textContent = activeCountry ? `${i18n[currentLang].reportCountry}: ${activeCountry}` : i18n[currentLang].allCountries;
+      renderReports();
+      renderWorldMap(features);
+    });
+}
+
 function renderReports(){
-  renderRecent(reportCache.recent || []);
-  renderCountryTable(reportCache.countries || []);
-  renderMapMarkers(reportCache.countries || []);
+  const countryRows = reportCache.countries || [];
+  buildCountryAmountMap(countryRows);
+  renderCountryTable(countryRows);
+  renderRecent(getFilteredRecent());
   renderStats(reportCache.stats || { total_reports: 0, total_amount: 0, countries_count: 0 });
 }
 
@@ -410,6 +490,7 @@ async function loadReports(){
     console.error(e);
   }
   renderReports();
+  if (worldFeatures) renderWorldMap(worldFeatures);
 }
 
 $("reportForm").addEventListener("submit", async (e) => {
@@ -460,14 +541,12 @@ function escapeHtml(value){
     .replaceAll("'","&#39;");
 }
 
-
-document.querySelectorAll(".lang-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    applyLanguage(btn.dataset.lang);
-  });
-});
-
 applyLanguage("fa");
 updatePaymentInfo();
 $("pageLoadedAt").value = String(Date.now());
 loadReports();
+initWorldMap();
+
+document.querySelectorAll(".lang-btn").forEach(btn => {
+  btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+});
