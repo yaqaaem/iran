@@ -122,7 +122,7 @@ body{
 .field{display:grid;gap:10px}
 .field label{font-size:14px;color:var(--muted)}
 .field input,.field textarea,.field select{
-  width:100%;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:16px;padding:15px 16px;font-size:16px;outline:none;color:var(--text)
+  width:100%;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:16px;padding:15px 16px;font-size:16px;outline:none;color:var(--text);font-family:Tahoma,Arial,sans-serif
 }
 .field input:focus,.field textarea:focus,.field select:focus{border-color:rgba(37,99,235,.45);box-shadow:0 0 0 4px rgba(37,99,235,.08)}
 .highlight-box{margin-top:18px;padding:18px;border:1px solid #e5ecf8;border-radius:20px;background:linear-gradient(180deg,rgba(248,251,255,.95),rgba(240,246,255,.9))}

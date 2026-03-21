@@ -25,34 +25,6 @@ const currencyPresets = {
 const agents = {
   1: {
     name: {
-      fa: "سيد جاسم الجزائري",
-      ar: "سيد جاسم الجزائري",
-      en: "Sayyid Jasim Al-Jazairi",
-      ur: "سید جاسم الجزائری",
-      fr: "Sayyid Jasim Al-Jazairi",
-      de: "Sayyid Jasim Al-Jazairi",
-      es: "Sayyid Jasim Al-Jazairi",
-      pt: "Sayyid Jasim Al-Jazairi",
-      tr: "Seyyid Casim el-Cezairi"
-    },
-    desc: {
-      fa: "اتصال مباشر، زين كاش و ماستر كارد",
-      ar: "اتصال مباشر، زين كاش و ماستر كارد",
-      en: "Direct contact, ZainCash and MasterCard",
-      ur: "براہ راست رابطہ، زین کیش اور ماسٹر کارڈ",
-      fr: "Contact direct, ZainCash et MasterCard",
-      de: "Direkter Kontakt, ZainCash und MasterCard",
-      es: "Contacto directo, ZainCash y MasterCard",
-      pt: "Contato direto, ZainCash e MasterCard",
-      tr: "Doğrudan iletişim, ZainCash ve MasterCard"
-    },
-    contact: "0773 003 5844",
-    zain: "07812010483",
-    master: "9037487221",
-    qr: "/qr/agent1-qr.png"
-  },
-  2: {
-    name: {
       fa: "الشيخ علي الكاظمي",
       ar: "الشيخ علي الكاظمي",
       en: "Sheikh Ali Al-Kadhimi",
@@ -77,6 +49,34 @@ const agents = {
     contact: "07702952583",
     zain: "07702952583",
     master: "7130833309",
+    qr: "/qr/agent1-qr.png"
+  },
+  2: {
+    name: {
+      fa: "سيد جاسم الجزائري",
+      ar: "سيد جاسم الجزائري",
+      en: "Sayyid Jasim Al-Jazairi",
+      ur: "سید جاسم الجزائری",
+      fr: "Sayyid Jasim Al-Jazairi",
+      de: "Sayyid Jasim Al-Jazairi",
+      es: "Sayyid Jasim Al-Jazairi",
+      pt: "Sayyid Jasim Al-Jazairi",
+      tr: "Seyyid Casim el-Cezairi"
+    },
+    desc: {
+      fa: "اتصال مباشر، زين كاش و ماستر كارد",
+      ar: "اتصال مباشر، زين كاش و ماستر كارد",
+      en: "Direct contact, ZainCash and MasterCard",
+      ur: "براہ راست رابطہ، زین کیش اور ماسٹر کارڈ",
+      fr: "Contact direct, ZainCash et MasterCard",
+      de: "Direkter Kontakt, ZainCash und MasterCard",
+      es: "Contacto directo, ZainCash y MasterCard",
+      pt: "Contato direto, ZainCash e MasterCard",
+      tr: "Doğrudan iletişim, ZainCash ve MasterCard"
+    },
+    contact: "0773 003 5844",
+    zain: "07812010483",
+    master: "9037487221",
     qr: "/qr/agent2-qr.png"
   }
 };
@@ -105,7 +105,7 @@ const i18n = {
     reportTitle:"ثبت گزارش پرداخت", reportSubtitle:"این فرم مستقیماً در پایگاه داده D1 ذخیره می‌شود.",
     payerNameLabel:"نام پرداخت‌کننده", payerNamePlaceholder:"نام شما",
     payerContactLabel:"شماره تماس / پیام‌رسان", payerContactPlaceholder:"مثلاً 0770...",
-    countryLabel:"کشور", reportDisplayNameLabel:"نام ثبت‌شونده",
+    countryLabel:"کشور", reportDisplayNameLabel:"نام ثبت‌شونده", reportDisplayNameHint:"نوشتن نام الزامی نیست؛ می‌تواند خالی بماند یا با نام مستعار تکمیل شود.",
     noteLabel:"توضیحات", notePlaceholder:"زمان پرداخت، توضیح کوتاه، توضیحات تکمیلی...",
     submitReportBtn:"ثبت اطلاعات", successTitle:"گزارش با موفقیت ثبت شد", successText:"اطلاعات شما در پایگاه داده ذخیره شد و در بخش گزارشات نیز بازتاب پیدا می‌کند.",
     reportsTitle:"گزارشات", reportsSubtitle:"۲۰ گزارش آخر و پراکندگی کشوری از پایگاه داده D1",
@@ -140,7 +140,7 @@ const i18n = {
     reportTitle:"تسجيل تقرير الدفع", reportSubtitle:"يتم حفظ هذا النموذج مباشرة في قاعدة بيانات D1.",
     payerNameLabel:"اسم الدافع", payerNamePlaceholder:"اسمك",
     payerContactLabel:"رقم الاتصال / المراسلة", payerContactPlaceholder:"مثلاً 0770...",
-    countryLabel:"الدولة", reportDisplayNameLabel:"الاسم المسجل",
+    countryLabel:"الدولة", reportDisplayNameLabel:"الاسم المسجل", reportDisplayNameHint:"كتابة الاسم ليست إلزامية؛ ويمكن تركه فارغاً أو استخدام اسم مستعار.",
     noteLabel:"ملاحظات", notePlaceholder:"وقت الدفع، ملاحظة قصيرة، تفاصيل إضافية...",
     submitReportBtn:"تسجيل المعلومات", successTitle:"تم تسجيل التقرير بنجاح", successText:"تم حفظ معلوماتك في قاعدة البيانات وستنعكس في قسم التقارير.",
     reportsTitle:"التقارير", reportsSubtitle:"آخر 20 تقريراً والتوزع الجغرافي من قاعدة بيانات D1",
@@ -175,7 +175,7 @@ const i18n = {
     reportTitle:"Submit payment report", reportSubtitle:"This form is stored directly in the D1 database.",
     payerNameLabel:"Payer name", payerNamePlaceholder:"Your name",
     payerContactLabel:"Phone / messenger", payerContactPlaceholder:"e.g. 0770...",
-    countryLabel:"Country", reportDisplayNameLabel:"Recorded name",
+    countryLabel:"Country", reportDisplayNameLabel:"Recorded name", reportDisplayNameHint:"Entering a name is optional; it may stay empty or use a pseudonym.",
     noteLabel:"Notes", notePlaceholder:"Payment time, short note, extra details...",
     submitReportBtn:"Submit information", successTitle:"Report submitted successfully", successText:"Your information has been saved to the database and reflected in the reports section.",
     reportsTitle:"Reports", reportsSubtitle:"Latest 20 reports and country distribution from D1",
@@ -199,7 +199,6 @@ let selectedAgent = 1;
 let reportCache = { recent: [], countries: [], stats: { total_reports: 0, total_amount: 0, countries_count: 0 } };
 
 const $ = (id) => document.getElementById(id);
-const dedicationInput = $("dedicationName");
 const reportDisplayName = $("reportDisplayName");
 
 function agentName(id){ return agents[id].name[currentLang] || agents[id].name.en; }
@@ -259,7 +258,6 @@ function applyLanguage(lang){
   $("payerName").placeholder = t.payerNamePlaceholder;
   $("payerContact").placeholder = t.payerContactPlaceholder;
   $("note").placeholder = t.notePlaceholder;
-  setPlaceholderBehavior(dedicationInput, t.dedicationPlaceholder);
   setPlaceholderBehavior(reportDisplayName, t.dedicationPlaceholder);
 
   document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === currentLang));
@@ -485,7 +483,6 @@ $("reportForm").addEventListener("submit", async (e) => {
 
   $("successBox").classList.remove("hidden");
   $("reportForm").reset();
-  setPlaceholderBehavior(dedicationInput, i18n[currentLang].dedicationPlaceholder);
   setPlaceholderBehavior(reportDisplayName, i18n[currentLang].dedicationPlaceholder);
   selectedAmount = currencyPresets[selectedCurrency][0];
   $("customAmount").value = "";
