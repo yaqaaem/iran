@@ -1,19 +1,19 @@
-const rateLimitMap = new Map();
-
 function corsHeaders(extra = {}) {
   return {
     "access-control-allow-origin": "*",
     "access-control-allow-methods": "GET,POST,OPTIONS",
     "access-control-allow-headers": "Content-Type, Authorization",
-    "content-type": "application/json; charset=utf-8",
     ...extra,
   };
 }
 
-function json(data, status = 200, extraHeaders = {}) {
+function json(data, status = 200) {
   return new Response(JSON.stringify(data, null, 2), {
     status,
-    headers: corsHeaders(extraHeaders),
+    headers: {
+      ...corsHeaders(),
+      "content-type": "application/json; charset=utf-8",
+    },
   });
 }
 
@@ -38,48 +38,171 @@ function getClientIp(request) {
   );
 }
 
-function isRateLimited(ip, limit = 10, windowMs = 60_000) {
+function badRequest(message, status = 400) {
+  return json({ ok: false, error: message }, status);
+}
+
+async function handleCreateReport(request, env) {
+  if (!env.DB) {
+    return badRequest("D1 database binding (DB) is missing.", 500);
+  }
+
+  const body = await readJson(request);
+  if (!body) {
+    return badRequest("JSON ارسالی نامعتبر است.");
+  }
+
+  // honeypot
+  if (normalizeString(body.website, 200)) {
+    return badRequest("Spam detected.", 400);
+  }
+
   const now = Date.now();
-  const entry = rateLimitMap.get(ip);
+  const pageLoadedAt = Number(body.page_loaded_at || 0);
 
-  if (!entry) {
-    rateLimitMap.set(ip, { count: 1, start: now });
-    return false;
+  // حداقل 2.5 ثانیه
+  if (!Number.isFinite(pageLoadedAt) || now - pageLoadedAt < 2500) {
+    return badRequest("ارسال فرم بیش از حد سریع بود.", 400);
   }
 
-  if (now - entry.start > windowMs) {
-    rateLimitMap.set(ip, { count: 1, start: now });
-    return false;
+  const payer_contact = normalizeString(body.payer_contact, 120);
+  const country = normalizeString(body.country, 120);
+  const display_name = normalizeString(body.display_name, 200);
+  const note = normalizeString(body.note, 2000);
+  const currency = normalizeString(body.currency, 10).toUpperCase();
+  const build_version = normalizeString(body.build_version, 50);
+
+  const amount = Number(body.amount);
+  const agent_id = Number(body.agent_id);
+
+  if (!country) {
+    return badRequest("کشور الزامی است.");
   }
 
-  entry.count += 1;
-  rateLimitMap.set(ip, entry);
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return badRequest("مبلغ نامعتبر است.");
+  }
 
-  return entry.count > limit;
+  if (![1, 2].includes(agent_id)) {
+    return badRequest("وکیل انتخابی نامعتبر است.");
+  }
+
+  if (!currency) {
+    return badRequest("ارز الزامی است.");
+  }
+
+  const ip = getClientIp(request);
+
+  await env.DB.prepare(
+    `
+    INSERT INTO reports
+    (payer_contact, country, display_name, note, amount, currency, agent_id, build_version, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+    `
+  )
+    .bind(
+      payer_contact,
+      country,
+      display_name,
+      note,
+      amount,
+      currency,
+      agent_id,
+      build_version
+    )
+    .run();
+
+  return json({
+    ok: true,
+    message: "گزارش با موفقیت ثبت شد.",
+  });
+}
+
+async function handleGetReports(request, env) {
+  if (!env.DB) {
+    return badRequest("D1 database binding (DB) is missing.", 500);
+  }
+
+  const url = new URL(request.url);
+  const limitRaw = Number(url.searchParams.get("limit") || 20);
+  const limit = Math.max(1, Math.min(100, limitRaw));
+
+  const result = await env.DB.prepare(
+    `
+    SELECT id, payer_contact, country, display_name, note, amount, currency, agent_id, build_version, created_at
+    FROM reports
+    ORDER BY datetime(created_at) DESC, id DESC
+    LIMIT ?
+    `
+  )
+    .bind(limit)
+    .all();
+
+  return json(result.results || []);
+}
+
+async function handleGetCountries(env) {
+  if (!env.DB) {
+    return badRequest("D1 database binding (DB) is missing.", 500);
+  }
+
+  const result = await env.DB.prepare(
+    `
+    SELECT
+      country,
+      COUNT(*) as count,
+      SUM(amount) as amount
+    FROM reports
+    GROUP BY country
+    ORDER BY amount DESC, count DESC, country ASC
+    `
+  ).all();
+
+  return json(result.results || []);
+}
+
+async function handleGetStats(env) {
+  if (!env.DB) {
+    return badRequest("D1 database binding (DB) is missing.", 500);
+  }
+
+  const result = await env.DB.prepare(
+    `
+    SELECT
+      COUNT(*) as total_reports,
+      COALESCE(SUM(amount), 0) as total_amount,
+      COUNT(DISTINCT country) as countries_count
+    FROM reports
+    `
+  ).first();
+
+  return json(
+    result || {
+      total_reports: 0,
+      total_amount: 0,
+      countries_count: 0,
+    }
+  );
+}
+
+async function serveAsset(request, env) {
+  if (!env.ASSETS || typeof env.ASSETS.fetch !== "function") {
+    return json({ ok: false, error: "Asset binding missing." }, 500);
+  }
+  return env.ASSETS.fetch(request);
 }
 
 export default {
   async fetch(request, env, ctx) {
     try {
       const url = new URL(request.url);
-      const { pathname } = url;
+      const pathname = url.pathname;
 
       if (request.method === "OPTIONS") {
         return new Response(null, { headers: corsHeaders() });
       }
 
-      if (pathname === "/" && request.method === "GET") {
-        return json({
-          ok: true,
-          message: "Worker is running",
-          endpoints: {
-            health: "/health",
-            config: "/config",
-            submit: "/submit"
-          }
-        });
-      }
-
+      // health
       if (pathname === "/health" && request.method === "GET") {
         return json({
           ok: true,
@@ -88,82 +211,31 @@ export default {
         });
       }
 
-      if (pathname === "/config" && request.method === "GET") {
-        return json({
-          ok: true,
-          config: {
-            appName: env.APP_NAME || "Donation App",
-            currency: env.DEFAULT_CURRENCY || "USD",
-            maxAmount: Number(env.MAX_AMOUNT || 1000),
-          },
-        });
+      // API routes expected by public/script.js
+      if (pathname === "/api/report" && request.method === "POST") {
+        return handleCreateReport(request, env);
       }
 
-      if (pathname === "/submit" && request.method === "POST") {
-        const ip = getClientIp(request);
-
-        if (isRateLimited(ip, 10, 60_000)) {
-          return json(
-            { ok: false, error: "Too many requests. Please try again later." },
-            429
-          );
-        }
-
-        const body = await readJson(request);
-        if (!body) {
-          return json({ ok: false, error: "Invalid JSON body." }, 400);
-        }
-
-        const name = normalizeString(body.name, 120);
-        const country = normalizeString(body.country, 120);
-        const language = normalizeString(body.language, 50);
-        const currency = normalizeString(body.currency, 10);
-        const note = normalizeString(body.note, 2000);
-
-        let amount = Number(body.amount);
-        if (!Number.isFinite(amount) || amount <= 0) {
-          return json({ ok: false, error: "Invalid amount." }, 400);
-        }
-
-        const maxAmount = Number(env.MAX_AMOUNT || 1000);
-        if (amount > maxAmount) {
-          return json(
-            {
-              ok: false,
-              error: `Amount exceeds maximum allowed limit (${maxAmount}).`,
-            },
-            400
-          );
-        }
-
-        const payload = {
-          id: crypto.randomUUID(),
-          createdAt: new Date().toISOString(),
-          ip,
-          name,
-          country,
-          language,
-          currency: currency || "USD",
-          amount,
-          note,
-        };
-
-        // إذا عندك KV binding باسم SUBMISSIONS سيخزن البيانات
-        if (env.SUBMISSIONS && typeof env.SUBMISSIONS.put === "function") {
-          await env.SUBMISSIONS.put(payload.id, JSON.stringify(payload));
-        }
-
-        return json({
-          ok: true,
-          message: "Submission received successfully.",
-          data: {
-            id: payload.id,
-            createdAt: payload.createdAt,
-          },
-        });
+      if (pathname === "/api/reports" && request.method === "GET") {
+        return handleGetReports(request, env);
       }
 
-      return json({ ok: false, error: "Not Found" }, 404);
+      if (pathname === "/api/countries" && request.method === "GET") {
+        return handleGetCountries(env);
+      }
+
+      if (pathname === "/api/stats" && request.method === "GET") {
+        return handleGetStats(env);
+      }
+
+      // اگر کاربر /reports را باز کرد، همان صفحه اصلی را بده
+      if (pathname === "/reports") {
+        const rewritten = new Request(new URL("/index.html", url.origin), request);
+        return serveAsset(rewritten, env);
+      }
+
+      // فایل‌های استاتیک public/*
+      return serveAsset(request, env);
     } catch (error) {
       return json(
         {
