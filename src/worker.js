@@ -38,18 +38,13 @@ export default {
       const body = await readJson(request);
       if (!body) return new Response("Invalid JSON", { status: 400 });
 
-      // Honeypot
-      if (normalizeString(body.website, 100)) {
-        return new Response("Spam blocked", { status: 400 });
-      }
+      if (normalizeString(body.website, 100)) return new Response("Spam blocked", { status: 400 });
 
-      // Dwell time check (submitted too fast)
       const loadedAt = Number(body.page_loaded_at || 0);
       if (!Number.isFinite(loadedAt) || Date.now() - loadedAt < 3000) {
         return new Response("Submitted too quickly", { status: 429 });
       }
 
-      // Simple in-memory rate limit by IP
       const ip = request.headers.get("CF-Connecting-IP") || "unknown";
       const now = Date.now();
       const last = rateLimitMap.get(ip) || 0;
@@ -69,10 +64,9 @@ export default {
 
       if (!country) return new Response("Country is required", { status: 400 });
       if (!Number.isFinite(amount) || amount <= 0) return new Response("Valid amount is required", { status: 400 });
-      if (![1,2].includes(agent_id)) return new Response("Valid agent is required", { status: 400 });
-      if (!["USD","IQD","EUR"].includes(currency)) return new Response("Valid currency is required", { status: 400 });
+      if (![1, 2].includes(agent_id)) return new Response("Valid agent is required", { status: 400 });
+      if (!["USD", "IQD", "EUR"].includes(currency)) return new Response("Valid currency is required", { status: 400 });
 
-      // Duplicate check in last 10 minutes
       const duplicate = await env.DB.prepare(`
         SELECT COUNT(*) as cnt
         FROM reports
@@ -117,7 +111,7 @@ export default {
 
     if (url.pathname === "/api/countries" && request.method === "GET") {
       const { results } = await env.DB.prepare(`
-        SELECT country, COUNT(*) as count, CAST(SUM(amount) AS REAL) as amount, MAX(currency) as currency
+        SELECT country, COUNT(*) as count, CAST(SUM(amount) AS REAL) as amount
         FROM reports
         GROUP BY country
         ORDER BY amount DESC, count DESC
@@ -143,7 +137,6 @@ export default {
     }
 
     if (env.ASSETS) return env.ASSETS.fetch(request);
-
     return new Response("Assets binding is missing.", { status: 500 });
   }
 };
