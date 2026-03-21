@@ -47,7 +47,7 @@ const i18n = {
 
 let currentLang="fa", selectedCurrency="USD", selectedAmount=currencyPresets.USD[0], selectedAgent=1;
 let reportCache={recent:[],countries:[],stats:{total_reports:0,total_amount:0,countries_count:0}};
-let activeCountry=null, countryAmountMap=new Map();
+let activeCountry=null, worldFeatures=null, featureNameMap=new Map(), countryAmountMap=new Map();
 
 const $ = id => document.getElementById(id);
 const reportDisplayInput = $("reportDisplayName");
@@ -94,6 +94,7 @@ function getFilteredRecent(){ const recent=reportCache.recent||[]; return active
 function renderRecent(items){ const holder=$("recentList"); holder.innerHTML=""; if(!items.length){ holder.innerHTML=`<div class="report-item"><div class="report-note">${i18n[currentLang].noReports}</div></div>`; return; } items.forEach(item=>{ const node=document.createElement("article"); node.className="report-item"; node.innerHTML=`<div class="report-item-top"><div><div class="report-name">${escapeHtml(item.display_name||"-")}</div><div class="report-meta">${i18n[currentLang].reportCountry}: ${escapeHtml(item.country||"-")}</div></div><div class="report-meta">${i18n[currentLang].reportTime}: ${escapeHtml(item.created_at||"-")}</div></div><div class="report-tags"><span class="report-tag">${i18n[currentLang].reportAmount}: ${formatAmount(Number(item.amount||0), item.currency||selectedCurrency)}</span><span class="report-tag">${i18n[currentLang].reportAgent}: ${agentName(Number(item.agent_id||1))}</span></div><div class="report-note">${escapeHtml(item.note||i18n[currentLang].noNote)}</div>`; holder.appendChild(node); }); }
 function renderStats(stats){ $("statReports").textContent=stats.total_reports??0; $("statCountries").textContent=stats.countries_count??0; $("statAmount").textContent=formatAmount(Number(stats.total_amount||0), selectedCurrency); $("heroReportsCount").textContent=stats.total_reports??0; }
 
+
 function normalizeName(name){ return String(name||"").trim().toLowerCase(); }
 function buildCountryAmountMap(rows){
   countryAmountMap = new Map();
@@ -105,72 +106,15 @@ function buildCountryAmountMap(rows){
 
 async function initWorldMap(){
   try{
-    const [topo, names] = await Promise.all([
-      d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"),
-      d3.tsv("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.tsv")
-    ]);
-    const nameMap = new Map(names.map(d=>[d.iso_n3, d.name]));
-    worldFeatures = topojson.feature(topo, topo.objects.countries).features.map(f => ({...f, properties:{...f.properties, name:nameMap.get(String(f.id).padStart(3,'0')) || nameMap.get(String(f.id)) || ""}}));
-    renderWorldMap();
+    const res = await fetch("/world-map.svg");
+    const text = await res.text();
+    $("worldMapContainer").innerHTML = text;
+    bindMapEvents();
+    updateMapColors();
   }catch(e){
     console.error("map load failed", e);
     $("worldMapContainer").innerHTML = '<div class="report-note">Map failed to load.</div>';
   }
-}
-
-function renderWorldMap(){
-  if(!worldFeatures) return;
-  const container = d3.select("#worldMapContainer");
-  container.selectAll("*").remove();
-  const width = container.node().clientWidth || 700, height = container.node().clientHeight || 420;
-  const svg = container.append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio","xMidYMid meet");
-  const projection = d3.geoNaturalEarth1().fitSize([width,height], {type:"Sphere"});
-  const path = d3.geoPath(projection);
-  svg.append("path").datum({type:"Sphere"}).attr("fill","#eef5ff").attr("d",path);
-  const amounts = [...new Set([...countryAmountMap.values()].map(v=>v.amount))];
-  const maxAmount = amounts.length ? Math.max(...amounts) : 0;
-  const color = d3.scaleLinear().domain([0, maxAmount || 1]).range(["#dbe7fb","#1d4ed8"]);
-  const tooltip = d3.select("#mapTooltip");
-
-  svg.append("g").selectAll("path")
-    .data(worldFeatures)
-    .join("path")
-    .attr("class", d => {
-      const item = countryAmountMap.get(normalizeName(d.properties.name));
-      const active = activeCountry && item?.country === activeCountry;
-      return `country${active ? " active-country" : ""}`;
-    })
-    .attr("fill", d => {
-      const item = countryAmountMap.get(normalizeName(d.properties.name));
-      return item ? color(item.amount) : "#dbe7fb";
-    })
-    .attr("d", path)
-    .on("mousemove", function(event,d){
-      const item = countryAmountMap.get(normalizeName(d.properties.name));
-      const cname = item?.country || d.properties.name || "";
-      const count = item?.count || 0;
-      const amount = item?.amount || 0;
-      tooltip.classed("hidden", false)
-        .style("left", `${event.offsetX + 18}px`)
-        .style("top", `${event.offsetY + 18}px`)
-        .html(`<strong>${escapeHtml(cname)}</strong><br>${i18n[currentLang].tableCount}: ${count}<br>${i18n[currentLang].tableAmount}: ${formatAmount(amount, selectedCurrency)}`);
-    })
-    .on("mouseleave", ()=> tooltip.classed("hidden", true))
-    .on("click", function(event,d){
-      const item = countryAmountMap.get(normalizeName(d.properties.name));
-      activeCountry = item?.country || null;
-      $("activeCountryLabel").textContent = activeCountry ? `${i18n[currentLang].reportCountry}: ${activeCountry}` : i18n[currentLang].allCountries;
-      renderReports();
-      renderWorldMap();
-    });
-}
-
-
-function renderReports(){
-  renderCountryTable(reportCache.countries||[]);
-  renderRecent(getFilteredRecent());
-  renderStats(reportCache.stats||{total_reports:0,total_amount:0,countries_count:0});
-  buildCountryAmountMap(reportCache.countries||[]);
 }
 
 function getMapItemByFeatureName(featureName){
@@ -196,15 +140,15 @@ function updateMapColors(){
     el.setAttribute("fill", item ? colorFor(item.amount) : "#dbe7fb");
     if(activeCountry && item?.country === activeCountry){
       el.classList.add("active-country");
-    }else{
+    } else {
       el.classList.remove("active-country");
     }
   });
 }
 
 function bindMapEvents(){
-  const wrap = document.getElementById("worldMapContainer");
-  const tooltip = document.getElementById("mapTooltip");
+  const wrap = $("worldMapContainer");
+  const tooltip = $("mapTooltip");
   const svg = wrap.querySelector("svg");
   if(!svg) return;
 
@@ -214,8 +158,8 @@ function bindMapEvents(){
       const cname = item?.country || (el.dataset.name || "");
       const count = item?.count || 0;
       const amount = item?.amount || 0;
-      tooltip.classList.remove("hidden");
       const rect = wrap.getBoundingClientRect();
+      tooltip.classList.remove("hidden");
       tooltip.style.left = `${event.clientX - rect.left + 18}px`;
       tooltip.style.top = `${event.clientY - rect.top + 18}px`;
       tooltip.innerHTML = `<strong>${escapeHtml(cname)}</strong><br>${i18n[currentLang].tableCount}: ${count}<br>${i18n[currentLang].tableAmount}: ${formatAmount(amount, selectedCurrency)}`;
@@ -231,19 +175,13 @@ function bindMapEvents(){
   });
 }
 
-async function initWorldMap(){
-  try{
-    const res = await fetch("/world-map.svg");
-    const text = await res.text();
-    $("worldMapContainer").innerHTML = text;
-    bindMapEvents();
-    updateMapColors();
-  }catch(e){
-    console.error("map load failed", e);
-    $("worldMapContainer").innerHTML = '<div class="report-note">Map failed to load.</div>';
-  }
+function renderReports(){
+  renderCountryTable(reportCache.countries||[]);
+  renderRecent(getFilteredRecent());
+  renderStats(reportCache.stats||{total_reports:0,total_amount:0,countries_count:0});
+  buildCountryAmountMap(reportCache.countries||[]);
+  updateMapColors();
 }
-
 
 async function loadReports(){
   try{
