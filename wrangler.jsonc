@@ -1,7 +1,16 @@
 {
   "name": "iran",
-  "compatibility_date": "2026-03-19",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-03-21",
   "assets": {
-    "directory": "./public"
-  }
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "iran-support-db",
+      "database_id": "09d6ecf2-1850-47ab-ba7c-75e21b88aa6b"
+    }
+  ]
 }
