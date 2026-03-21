@@ -460,6 +460,13 @@ function escapeHtml(value){
     .replaceAll("'","&#39;");
 }
 
+
+document.querySelectorAll(".lang-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    applyLanguage(btn.dataset.lang);
+  });
+});
+
 applyLanguage("fa");
 updatePaymentInfo();
 $("pageLoadedAt").value = String(Date.now());
