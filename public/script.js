@@ -12,8 +12,8 @@ const minAmountByCurrency = { USD: 5, IQD: 10000, EUR: 5 };
 const FX_USD_ESTIMATE = { USD: 1, EUR: 1.09, IQD: 0.00076 };
 
 const agents = {
-  1: { contact: "07702952583", zain: "07702952583", master: "7130833309", qr: "/qr/agent1-qr.png" },
-  2: { contact: "07701234567", zain: "07701234567", master: "5266123412", qr: "/qr/agent2-qr.png" }
+  1: { contact: "07702952583", zain: "07702952583", master: "7130833309", qr: "./qr/agent1-qr.png" },
+  2: { contact: "07701234567", zain: "07701234567", master: "5266123412", qr: "./qr/agent2-qr.png" }
 };
 
 const countryAliases = {
@@ -259,7 +259,7 @@ function buildCountryAmountMap(rows){
 
 async function initWorldMap(){
   try {
-    const res = await fetch("/world-map.svg");
+    const res = await fetch("./world-map.svg");
     const text = await res.text();
     $("worldMapContainer").innerHTML = text;
     bindMapEvents();
@@ -335,7 +335,7 @@ function renderReports(){
 
 async function loadReports(){
   try {
-    const [recentRes, countryRes, statsRes] = await Promise.all([fetch("/api/reports?limit=20"), fetch("/api/countries"), fetch("/api/stats")]);
+    const [recentRes, countryRes, statsRes] = await Promise.all([fetch("./api/reports?limit=20"), fetch("./api/countries"), fetch("./api/stats")]);
     if (!recentRes.ok || !countryRes.ok || !statsRes.ok) throw new Error("api");
     reportCache.recent = await recentRes.json();
     reportCache.countries = await countryRes.json();
@@ -366,7 +366,7 @@ $("reportForm").addEventListener("submit", async (e) => {
     page_loaded_at: Number($("pageLoadedAt").value || Date.now()),
     build_version: buildVersion
   };
-  const res = await fetch("/api/report", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) });
+  const res = await fetch("./api/report", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) });
   if (!res.ok) {
     const text = await res.text();
     alert(text || "Submission failed");
@@ -386,6 +386,8 @@ $("reportForm").addEventListener("submit", async (e) => {
 
 function escapeHtml(value){ return String(value).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#39;"); }
 
+document.documentElement.classList.add("js-motion");
+initRevealAnimations();
 applyLanguage("fa");
 updatePaymentInfo();
 $("pageLoadedAt").value = String(Date.now());
