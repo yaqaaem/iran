@@ -19,7 +19,7 @@
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  font-family:Tahoma,Arial,sans-serif;
+  font-family:"Vazirmatn",Tahoma,Arial,sans-serif;
   background:
     radial-gradient(circle at 12% 18%, rgba(201,166,70,.10), transparent 26%),
     radial-gradient(circle at 88% 22%, rgba(127,180,255,.11), transparent 22%),
@@ -86,7 +86,7 @@ body{
 .amount-btn:hover,.agent-card:hover,.mini-btn:hover,.secondary-btn:hover{transform:translateY(-1px);border-color:rgba(201,166,70,.26)}
 .amount-btn.active{border-color:rgba(201,166,70,.42);color:#fff;background:linear-gradient(180deg,rgba(201,166,70,.16),rgba(201,166,70,.05))}
 .field{display:grid;gap:10px}.field label{font-size:14px;color:var(--muted)}
-.field input,.field textarea,.field select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:15px 16px;font-size:16px;outline:none;color:var(--text);font-family:Tahoma,Arial,sans-serif}
+.field input,.field textarea,.field select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:15px 16px;font-size:16px;outline:none;color:var(--text);font-family:"Vazirmatn",Tahoma,Arial,sans-serif}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:rgba(201,166,70,.45);box-shadow:0 0 0 4px rgba(201,166,70,.08)}
 .field input::placeholder,.field textarea::placeholder{color:#94a4bb;opacity:1}
 .notice,.success{display:flex;gap:12px;align-items:flex-start;border-radius:18px;padding:14px 16px;margin-top:18px}
@@ -121,6 +121,14 @@ code{flex:1;background:rgba(0,0,0,.18);border:1px dashed rgba(201,166,70,.18);bo
 .footer{margin-top:18px;border-radius:26px;padding:20px 22px;border-color:var(--line)}
 .footer::before{content:"";display:block;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,166,70,.78),transparent);margin-bottom:16px}
 .footer-main,.footer-meta{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;text-align:center}.footer-main{margin-bottom:10px}.footer p{margin:0;color:var(--muted);line-height:1.95}.footer a{color:var(--primary2);text-decoration:none;font-weight:700}.footer a:hover{text-decoration:underline}.footer-meta code{background:rgba(0,0,0,.20);border:1px dashed rgba(201,166,70,.18);border-radius:12px;padding:8px 12px}
+
+.hero #title{font-family:"Vazirmatn",Tahoma,Arial,sans-serif;font-weight:900;letter-spacing:-.03em;text-wrap:balance;text-shadow:0 10px 30px rgba(0,0,0,.22)}
+body[lang="fa"] .hero #title,body[lang="ar"] .hero #title{font-feature-settings:"ss01" 1}
+.reports-layout{align-items:start}
+.map-panel,.recent-panel{min-height:100%}
+#worldMapContainer{display:block}
+#recentList{display:grid}
+
 .hidden{display:none !important}
 body[dir="ltr"] .hero,body[dir="ltr"] .panel,body[dir="ltr"] .agent-card,body[dir="ltr"] .summary-card,body[dir="ltr"] .info-card,body[dir="ltr"] .report-item,body[dir="ltr"] .footer{text-align:left}
 body[dir="rtl"] .feature-card{text-align:right}
