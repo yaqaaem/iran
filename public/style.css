@@ -182,3 +182,40 @@ thead th{background:#f8fafc;color:var(--navy);font-weight:800}
   .hero-actions .primary-btn,.hero-actions .secondary-btn,.action-row .primary-btn,.action-row .secondary-btn{flex:1}
   .report-item-top{flex-direction:column}
 }
+
+
+/* Motion system */
+html{scroll-behavior:smooth}
+@keyframes floatGlow{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-8px,0)}}
+@keyframes pulseBorder{0%,100%{box-shadow:0 0 0 0 rgba(200,164,93,.14)}50%{box-shadow:0 0 0 10px rgba(200,164,93,0)}}
+@keyframes shimmerSlide{0%{transform:translateX(-140%)}100%{transform:translateX(180%)}}
+@keyframes fadeRise{from{opacity:0;transform:translate3d(0,24px,0) scale(.985)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes softPop{0%{transform:scale(.98);opacity:.6}100%{transform:scale(1);opacity:1}}
+
+.reveal-up{opacity:0;transform:translate3d(0,28px,0);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal-up.is-visible{opacity:1;transform:translate3d(0,0,0)}
+.reveal-delay-1{transition-delay:.08s}
+.reveal-delay-2{transition-delay:.16s}
+.reveal-delay-3{transition-delay:.24s}
+
+.hero,.panel,.trust-strip,.process-strip,.map-panel,.recent-panel,.footer,.institution-bar{will-change:transform,opacity}
+.hero::after{content:"";position:absolute;inset:auto auto -20% -10%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle, rgba(200,164,93,.14), transparent 68%);filter:blur(6px);animation:floatGlow 8s ease-in-out infinite;pointer-events:none}
+.hero-side,.conversion-note,.micro-highlight{animation:softPop .7s ease both}
+.hero-badge,.micro-pill{position:relative;overflow:hidden}
+.hero-badge::after,.micro-pill::after{content:"";position:absolute;inset:0;transform:translateX(-140%);background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);animation:shimmerSlide 4.2s ease-in-out infinite}
+.primary-btn,.secondary-btn,.mini-btn,.currency-btn,.amount-btn,.agent-card,.feature-card,.summary-card,.info-card,.report-item,.trust-item,.process-step,.lang-btn{transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease, opacity .22s ease}
+.primary-btn:hover,.secondary-btn:hover,.mini-btn:hover,.currency-btn:hover,.amount-btn:hover,.agent-card:hover,.feature-card:hover,.summary-card:hover,.info-card:hover,.report-item:hover,.trust-item:hover,.process-step:hover{transform:translateY(-3px);box-shadow:0 18px 34px rgba(19,35,63,.12)}
+.primary-btn{position:relative;overflow:hidden}
+.primary-btn::after{content:"";position:absolute;inset:auto -20% -140% auto;width:140px;height:140px;background:radial-gradient(circle, rgba(255,255,255,.42), rgba(255,255,255,0) 65%);transition:transform .45s ease;transform:translate3d(0,0,0)}
+.primary-btn:hover::after{transform:translate3d(-18px,-18px,0)}
+.panel:hover,.trust-strip:hover,.process-strip:hover,.map-panel:hover,.recent-panel:hover,.footer:hover,.institution-bar:hover{box-shadow:0 24px 54px rgba(19,35,63,.11)}
+.agent-card.active,.amount-btn.active,.currency-btn.active{animation:pulseBorder 1.8s ease}
+.report-item{animation:fadeRise .5s ease both}
+.report-item:nth-child(2){animation-delay:.04s}.report-item:nth-child(3){animation-delay:.08s}.report-item:nth-child(4){animation-delay:.12s}.report-item:nth-child(5){animation-delay:.16s}
+.map-country{transition:fill .22s ease,transform .22s ease,stroke .22s ease,filter .22s ease}
+.map-country:hover{filter:drop-shadow(0 4px 10px rgba(19,35,63,.14))}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal-up{opacity:1;transform:none}
+}

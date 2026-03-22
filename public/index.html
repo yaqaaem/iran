@@ -17,20 +17,20 @@
   <div class="bg-navy"></div>
   <main class="shell">
     <header class="topbar">
-      <div class="institution-bar glass premium-border">
+      <div class="institution-bar glass premium-border reveal-up">
         <div class="institution-mark">✦</div>
         <div class="institution-copy">
-          <div class="institution-kicker">بستر رسمی و چندزبانه</div>
-          <strong class="institution-title">سامانه پشتیبانی و ثبت گزارش‌های مردمی</strong>
-          <small class="institution-subtitle">طراحی‌شده با زبان بصری رسمی، اعتمادساز و مناسب برای کمپین‌های عمومی و بین‌المللی</small>
+          <div class="institution-kicker" id="institutionKicker">بستر رسمی و چندزبانه</div>
+          <strong class="institution-title" id="institutionTitle">سامانه پشتیبانی و ثبت گزارش‌های مردمی</strong>
+          <small class="institution-subtitle" id="institutionSubtitle">طراحی‌شده با زبان بصری رسمی، اعتمادساز و مناسب برای کمپین‌های عمومی و بین‌المللی</small>
         </div>
         <div class="institution-side">
-          <span class="institution-chip">9 زبان فعال</span>
-          <span class="institution-chip institution-chip-gold">2 وکیل مستقل</span>
+          <span class="institution-chip" id="institutionChipLanguages">9 زبان فعال</span>
+          <span class="institution-chip institution-chip-gold" id="institutionChipAgents">2 وکیل مستقل</span>
         </div>
       </div>
 
-      <div class="lang-switcher-wrap">
+      <div class="lang-switcher-wrap reveal-up reveal-delay-1">
         <div class="lang-switcher" dir="ltr">
           <button class="lang-btn active" data-lang="fa">🇮🇷 فارسی</button>
           <button class="lang-btn" data-lang="ar">🇮🇶 العربية</button>
@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <section class="hero premium-border">
+      <section class="hero premium-border reveal-up reveal-delay-2">
         <div class="hero-grid"></div>
         <div class="hero-content">
           <div class="hero-badge" id="heroBadge">پلتفرم حمایتی چندزبانه</div>
@@ -89,14 +89,14 @@
         </aside>
       </section>
 
-      <section class="trust-strip premium-border">
+      <section class="trust-strip premium-border reveal-up reveal-delay-3">
         <article class="trust-item"><span>◆</span><div><strong id="trust1Title">چندزبانه و عمومی</strong><small id="trust1Text">مناسب برای مشارکت مخاطبان منطقه‌ای و بین‌المللی</small></div></article>
         <article class="trust-item"><span>◆</span><div><strong id="trust2Title">دو مسیر دریافت مستقل</strong><small id="trust2Text">تماس، زین‌کاش، مسترکارت و QR برای هر وکیل</small></div></article>
         <article class="trust-item"><span>◆</span><div><strong id="trust3Title">گزارش‌گیری شفاف</strong><small id="trust3Text">ثبت گزارش‌ها و نمایش تجمیعی با لحاظ ارزش تقریبی ارزی</small></div></article>
       </section>
     </header>
 
-    <section class="panel premium-border" id="amountSection">
+    <section class="panel premium-border reveal-up" id="amountSection">
       <div class="panel-head">
         <div>
           <h2 id="amountTitle">انتخاب مبلغ و ارز</h2>
@@ -121,7 +121,7 @@
       </div>
     </section>
 
-    <section class="panel premium-border">
+    <section class="panel premium-border reveal-up">
       <div class="panel-head">
         <div>
           <h2 id="agentTitle">انتخاب وکیل دریافت‌کننده</h2>
@@ -166,7 +166,7 @@
       <p class="helper" id="paymentHelper">پس از پرداخت، روی «اعلام پرداخت» بزنید تا گزارش شما ثبت شود.</p>
     </section>
 
-    <section class="process-strip premium-border">
+    <section class="process-strip premium-border reveal-up">
       <article class="process-step"><span>1</span><div><strong id="step1Title">انتخاب ارز و مبلغ</strong><small id="step1Text">پکیج‌های سریع یا مبلغ دلخواه</small></div></article>
       <article class="process-step"><span>2</span><div><strong id="step2Title">انتخاب وکیل</strong><small id="step2Text">هر وکیل مسیر پرداخت مستقل دارد</small></div></article>
       <article class="process-step"><span>3</span><div><strong id="step3Title">ثبت گزارش</strong><small id="step3Text">برای شفافیت آماری و نمایش عمومی</small></div></article>
@@ -205,7 +205,7 @@
         <div class="summary-card accent-gold"><span id="statCountriesLabel">کشورهای مشارکت‌کننده</span><strong id="statCountries">0</strong></div>
         <div class="summary-card accent-green"><span id="statAmountLabel">مجموع مبالغ (برآورد دلاری)</span><strong id="statAmount">0</strong></div>
       </div>
-      <div class="reports-layout">
+      <div class="reports-layout reveal-up">
         <div class="map-panel premium-border">
           <div class="sub-head"><h3 id="countryReportTitle">گزارش کشوری</h3><p id="countryReportSubtitle">نقشه حرارتی تعاملی: شدت رنگ بر اساس برآورد دلاری مجموع مبالغ، کلیک روی کشور برای دیدن گزارش‌های همان کشور.</p></div>
           <div class="map-wrap"><div id="worldMapContainer" class="world-map-container"></div><div id="mapTooltip" class="map-tooltip hidden"></div></div>
@@ -219,7 +219,7 @@
       </div>
     </section>
 
-    <footer class="footer premium-border">
+    <footer class="footer premium-border reveal-up">
       <p id="footerText">توسعه داده شده توسط <a href="http://t.me/mohsenzadeh2" target="_blank" rel="noopener noreferrer">@mohsenzadeh2</a> تحت اشراف <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">جامعة المصطفی العالمیة - نمایندگی عراق</a></p>
       <p class="muted"><span id="buildVersionLabel">نسخه استقرار:</span> <span id="buildVersion">2026.03.22-213500</span></p>
     </footer>
