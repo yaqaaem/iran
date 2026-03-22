@@ -146,8 +146,8 @@ code{padding:12px 14px;border-radius:14px;background:#f4f7fb;border:1px solid va
 .map-wrap{position:relative;border-radius:22px;background:linear-gradient(180deg,#f8fafc,#fff);border:1px solid var(--line);padding:14px;min-height:360px;margin-bottom:16px}
 .world-map-container{width:100%;min-height:330px}
 .world-map-container svg{width:100%;height:auto;display:block}
-.map-country{stroke:#fff;stroke-width:.7;transition:fill .18s ease,transform .18s ease;cursor:pointer}
-.map-country:hover{transform:translateY(-1px)}
+.map-country{stroke:#bccbdf;stroke-width:.85;transition:fill .18s ease,transform .18s ease,stroke .18s ease;cursor:pointer}
+.map-country:hover{transform:translateY(-1px);stroke:#8ea3c5}
 .active-country{stroke:var(--gold)!important;stroke-width:2.2!important}
 .map-tooltip{position:absolute;z-index:10;background:rgba(19,35,63,.96);color:#fff;padding:10px 12px;border-radius:14px;font-size:13px;line-height:1.7;box-shadow:var(--shadow-soft);max-width:260px}
 .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:18px}
