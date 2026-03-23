@@ -465,7 +465,12 @@ window.addEventListener("orientationchange", () => {
   setTimeout(__safeRepaintReportsSection, 180);
 });
 
+function __isMobileViewport() {
+  return window.matchMedia("(max-width: 760px)").matches;
+}
+
 window.addEventListener("scroll", () => {
+  if (!__isMobileViewport()) return;
   clearTimeout(window.__reportsScrollTimer);
   window.__reportsScrollTimer = setTimeout(__safeRepaintReportsSection, 120);
 }, { passive: true });
