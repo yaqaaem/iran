@@ -17,7 +17,7 @@
   --radius:24px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{
   margin:0;
   font-family:"Vazirmatn",system-ui,sans-serif;
@@ -195,7 +195,7 @@ thead th{background:#f8fafc;color:var(--navy);font-weight:800}
 }
 
 /* Motion system */
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 @keyframes floatGlow{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-8px,0)}}
 @keyframes pulseBorder{0%,100%{box-shadow:0 0 0 0 rgba(200,164,93,.14)}50%{box-shadow:0 0 0 10px rgba(200,164,93,0)}}
 @keyframes shimmerSlide{0%{transform:translateX(-140%)}100%{transform:translateX(180%)}}
@@ -256,81 +256,23 @@ html{scroll-behavior:smooth}
 }
 
 
-/* ===== Mobile stability patch for reports/map section ===== */
-@media (max-width: 760px){
-  .map-panel,
-  .recent-panel,
-  .map-wrap,
-  .recent-list,
-  .world-map-container,
-  .report-item{
-    -webkit-backdrop-filter:none !important;
-    backdrop-filter:none !important;
-    filter:none !important;
-    transform:none !important;
-    will-change:auto !important;
-    content-visibility:visible !important;
-    contain:none !important;
-    opacity:1 !important;
-  }
-
-  .map-panel,
-  .recent-panel{
-    overflow:visible !important;
-    min-height:auto !important;
-    height:auto !important;
-    box-shadow:var(--shadow-soft) !important;
-  }
-
-  .map-wrap{
-    min-height:auto !important;
-    padding:10px !important;
-    overflow:visible !important;
-    background:#fff !important;
-  }
-
-  .world-map-container{
-    min-height:180px !important;
-    height:auto !important;
-    display:block !important;
-  }
-
-  .world-map-container svg{
-    display:block !important;
-    width:100% !important;
-    max-height:220px !important;
-    height:auto !important;
-  }
-
-  .table-wrap{
-    display:block !important;
-    overflow:auto !important;
-    max-height:none !important;
-  }
-
-  .recent-list{
-    display:grid !important;
-    grid-template-columns:1fr !important;
-    gap:12px !important;
-    overflow:visible !important;
-    max-height:none !important;
-    min-height:auto !important;
-    height:auto !important;
-  }
-
-  .report-item{
-    display:block !important;
-    animation:none !important;
-  }
-
-  .js-motion .map-panel,
-  .js-motion .recent-panel,
-  .js-motion .report-item,
-  .js-motion .reveal-up{
-    opacity:1 !important;
-    transform:none !important;
-    transition:none !important;
-    animation:none !important;
-  }
+/* ===== Desktop scroll stability patch ===== */
+html, body{
+  overflow-anchor: none;
 }
 
+.reports-layout,
+.map-panel,
+.recent-panel,
+.recent-list,
+.report-item,
+.footer{
+  overflow-anchor: none;
+}
+
+@media (min-width: 761px){
+  .js-motion .reveal-up,
+  .js-motion .reveal-up.is-visible{
+    transform:none !important;
+  }
+}
