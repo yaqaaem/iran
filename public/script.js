@@ -400,11 +400,73 @@ $("reportForm").addEventListener("submit", async (e) => {
 
 function escapeHtml(value){ return String(value).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#39;"); }
 
-document.documentElement.classList.add("js-motion");
-initRevealAnimations();
+if (window.innerWidth > 760) { document.documentElement.classList.add("js-motion"); initRevealAnimations(); } else { document.querySelectorAll(".reveal-up").forEach(el => el.classList.add("is-visible")); }
 applyLanguage("fa");
 updatePaymentInfo();
 $("pageLoadedAt").value = String(Date.now());
 loadReports();
 initWorldMap();
 document.querySelectorAll(".lang-btn").forEach(btn => btn.addEventListener("click", () => applyLanguage(btn.dataset.lang)));
+
+
+/* ===== Mobile stability patch for reports/map section ===== */
+function __safeRepaintReportsSection() {
+  try {
+    const list = $("recentList");
+    const map = $("worldMapContainer");
+    const table = $("countryTableBody");
+    const reportsLayout = document.querySelector(".reports-layout");
+
+    if (reportsLayout) {
+      reportsLayout.style.display = "grid";
+      void reportsLayout.offsetHeight;
+    }
+
+    if (typeof renderReports === "function") {
+      renderReports();
+    }
+    if (typeof updateMapColors === "function") {
+      updateMapColors();
+    }
+    if (typeof bindMapEvents === "function") {
+      bindMapEvents();
+    }
+
+    if (map) {
+      map.style.display = "none";
+      void map.offsetHeight;
+      map.style.display = "block";
+    }
+
+    if (list && !list.children.length && typeof renderRecent === "function") {
+      renderRecent(getFilteredRecent());
+    }
+
+    if (table && !table.children.length && typeof renderCountryTable === "function") {
+      renderCountryTable(reportCache.countries || []);
+    }
+  } catch (e) {
+    console.error("mobile reports repaint failed", e);
+  }
+}
+
+window.addEventListener("pageshow", () => {
+  setTimeout(__safeRepaintReportsSection, 120);
+  setTimeout(__safeRepaintReportsSection, 450);
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    setTimeout(__safeRepaintReportsSection, 120);
+  }
+});
+
+window.addEventListener("orientationchange", () => {
+  setTimeout(__safeRepaintReportsSection, 180);
+});
+
+window.addEventListener("scroll", () => {
+  clearTimeout(window.__reportsScrollTimer);
+  window.__reportsScrollTimer = setTimeout(__safeRepaintReportsSection, 120);
+}, { passive: true });
+

@@ -209,7 +209,8 @@ html{scroll-behavior:smooth}
 .reveal-delay-2{transition-delay:.16s}
 .reveal-delay-3{transition-delay:.24s}
 
-.hero,.panel,.trust-strip,.process-strip,.map-panel,.recent-panel,.footer,.institution-bar{will-change:transform,opacity}
+.hero,.panel,.trust-strip,.process-strip,.footer,.institution-bar{will-change:transform,opacity}
+.map-panel,.recent-panel{will-change:auto}
 .hero::after{content:"";position:absolute;inset:auto auto -20% -10%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle, rgba(200,164,93,.14), transparent 68%);filter:blur(6px);animation:floatGlow 8s ease-in-out infinite;pointer-events:none}
 .hero-side,.conversion-note,.micro-highlight{animation:softPop .7s ease both}
 .hero-badge,.micro-pill{position:relative;overflow:hidden}
@@ -230,3 +231,106 @@ html{scroll-behavior:smooth}
   *,*::before,*::after{animation:none !important;transition:none !important}
   .reveal-up{opacity:1;transform:none}
 }
+
+
+/* Mobile render stability fix */
+@media (max-width: 760px){
+  .map-panel,.recent-panel,.reports-layout,.map-wrap,.world-map-container,.recent-list{
+    transform:none !important;
+    opacity:1 !important;
+    filter:none !important;
+    contain:none !important;
+    content-visibility:visible !important;
+    will-change:auto !important;
+    backface-visibility:visible !important;
+    -webkit-backface-visibility:visible !important;
+  }
+  .map-panel,.recent-panel{
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    background:#ffffff !important;
+  }
+  .map-wrap{overflow:visible !important;min-height:auto !important;}
+  .world-map-container{min-height:180px !important;height:auto !important;overflow:visible !important;}
+  .recent-list,.report-item{display:grid !important;}
+}
+
+
+/* ===== Mobile stability patch for reports/map section ===== */
+@media (max-width: 760px){
+  .map-panel,
+  .recent-panel,
+  .map-wrap,
+  .recent-list,
+  .world-map-container,
+  .report-item{
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+    filter:none !important;
+    transform:none !important;
+    will-change:auto !important;
+    content-visibility:visible !important;
+    contain:none !important;
+    opacity:1 !important;
+  }
+
+  .map-panel,
+  .recent-panel{
+    overflow:visible !important;
+    min-height:auto !important;
+    height:auto !important;
+    box-shadow:var(--shadow-soft) !important;
+  }
+
+  .map-wrap{
+    min-height:auto !important;
+    padding:10px !important;
+    overflow:visible !important;
+    background:#fff !important;
+  }
+
+  .world-map-container{
+    min-height:180px !important;
+    height:auto !important;
+    display:block !important;
+  }
+
+  .world-map-container svg{
+    display:block !important;
+    width:100% !important;
+    max-height:220px !important;
+    height:auto !important;
+  }
+
+  .table-wrap{
+    display:block !important;
+    overflow:auto !important;
+    max-height:none !important;
+  }
+
+  .recent-list{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+    overflow:visible !important;
+    max-height:none !important;
+    min-height:auto !important;
+    height:auto !important;
+  }
+
+  .report-item{
+    display:block !important;
+    animation:none !important;
+  }
+
+  .js-motion .map-panel,
+  .js-motion .recent-panel,
+  .js-motion .report-item,
+  .js-motion .reveal-up{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+    animation:none !important;
+  }
+}
+
