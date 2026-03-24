@@ -13,7 +13,9 @@ const FX_USD_ESTIMATE = { USD: 1, EUR: 1.09, IQD: 0.00076 };
 
 const agents = {
   1: { contact: "07702952583", zain: "07702952583", master: "7130833309", qr: "./qr/agent1-qr.png" },
-  2: { contact: "07701234567", zain: "07701234567", master: "5266123412", qr: "./qr/agent2-qr.png" }
+  2: { contact: "07701234567", zain: "07701234567", master: "5266123412", qr: "./qr/agent2-qr.png" },
+  3: { contact: "7711416199", zain: "07782224544 - 07808668183", master: "714408629", qr: "./qr/agent3-qr.png" },
+  4: { contact: "07716732700", zain: "07838701701", master: "", qr: "./qr/agent4-qr.png" }
 };
 
 const countryAliases = {
@@ -71,6 +73,32 @@ const i18n = {
   tr: {...baseEn, title:"İran İslam Devrimi için halk bağışları", heroBadge:"Çok dilli destek platformu", subtitle:"Para birimini, tutarı ve alıcı temsilciyi seçin; ardından isterseniz ödeme bildiriminizi gönderin.", feature1Title:"Uluslararası erişim", feature1Text:"9 dil ve küresel kitle desteği", feature2Title:"Gerçek ödeme bilgileri", feature2Text:"İki bağımsız temsilci için gerçek bilgiler", feature3Title:"Canlı raporlar", feature3Text:"D1’den son 20 rapor ve ülke dağılımı", heroStat1:"Aktif diller", heroStat2:"Aktif temsilciler", heroStat3:"Kayıtlı raporlar", heroDonateBtn:"Destek sürecini başlat", heroReportsBtn:"Raporları görüntüle", heroSideKicker:"Küçük ödemeler neden önemlidir?", heroSideTitle:"Küçük ödemelerin kolektif etkisi çok büyüktür", heroSideText:"10.000 Irak dinarı tek başına büyük bir tutar değildir. Ancak bu küçük katkı çok sayıda destekçi tarafından tekrarlandığında, toplam miktar anlamlı ve görünür bir etkiye dönüşür.", microPill:"Küçük katkı, büyük etki", microExample:"10.000 IQD × 1.000 kişi = 10.000.000 IQD", microExampleNote:"Toplu istatistiklerde tutarlar, para birimi farklarının yanıltıcı bir izlenim oluşturmaması için tahmini USD değeriyle gösterilir.", institutionKicker:"Resmî ve çok dilli platform", institutionTitle:"Kamu destek ve raporlama sistemi", institutionSubtitle:"Kamusal ve uluslararası kampanyalara uygun, resmî ve güven veren bir görsel dille tasarlandı", institutionChipLanguages:"9 aktif dil", institutionChipAgents:"2 bağımsız temsilci", trust1Title:"Kamusal ve çok dilli", trust1Text:"Bölgesel ve uluslararası kitleler için uygundur", trust2Title:"İki bağımsız tahsilat kanalı", trust2Text:"Her temsilci için iletişim, ZainCash, MasterCard ve QR", trust3Title:"Şeffaf raporlama", trust3Text:"Raporlar kaydedilirken toplamlar yaklaşık kur değerini de dikkate alır", amountTitle:"Tutar ve para birimi seçin", amountSubtitle:"Her iki temsilci de tüm para birimlerini kabul eder.", customAmountLabel:"Özel tutar", amountNotice:"Yüksek tutarlar için son gönderimden önce teyit edilmesi daha uygundur.", conversionTitle:"Akıllı toplu gösterim", conversionText:"Farklı para birimleri arasında yanıltıcı karşılaştırmaları önlemek için genel istatistikler ve ısı haritası tahmini USD temeline göre hesaplanır; her rapor ise kendi para birimindeki asıl tutarı korur.", agentTitle:"Alıcı temsilciyi seçin", agentSubtitle:"Her temsilcinin ödeme bilgileri ayrıdır.", agent1Badge:"Temsilci 1", agent2Badge:"Temsilci 2", agent1Desc:"İletişim, ZainCash ve MasterCard", agent2Desc:"Doğrudan iletişim, ZainCash ve MasterCard", paymentTitle:"Ödeme bilgileri", paymentSubtitle:"Aşağıdaki bilgiler seçilen temsilciye göre değişir.", selectedCurrencyLabel:"Seçilen para birimi", selectedAmountLabel:"Seçilen tutar", selectedAgentLabel:"Seçilen temsilci", contactLabel:"İletişim", zainLabel:"ZainCash", masterLabel:"MasterCard", copy:"Kopyala", copied:"Kopyalandı", showReportBtn:"Ödemeyi bildir", callAgentBtn:"Temsilciyi ara", paymentHelper:"Ödemeden sonra raporunuzu göndermek için “Ödemeyi bildir” düğmesine tıklayın.", step1Title:"Para birimi ve tutar seçin", step1Text:"Hızlı paketler veya özel tutar", step2Title:"Temsilci seçin", step2Text:"Her temsilcinin bağımsız bir ödeme yolu vardır", step3Title:"Rapor gönder", step3Text:"Kamusal şeffaflık ve raporlama için", currencyLabelUSD:"USD - Dolar", currencyLabelIQD:"IQD - Irak Dinarı", currencyLabelEUR:"EUR - Euro", reportTitle:"Ödeme raporu gönder", reportSubtitle:"Bu form doğrudan D1 veritabanında saklanır.", payerContactLabel:"Telefon / mesajlaşma", payerContactPlaceholder:"ör. 0770...", countryLabel:"Ülke", reportDisplayNameLabel:"Görünen ad", reportDisplayNameHint:"Ad girmek zorunlu değildir; alan boş bırakılabilir veya takma ad kullanılabilir.", reportDisplayPlaceholder:"Mohammad Ali Mohsen - Şehit Büyük Ayetullah İmam Hamaney adına", noteLabel:"Notlar", notePlaceholder:"Ödeme zamanı, kısa not, ek ayrıntılar...", submitReportBtn:"Bilgileri gönder", successTitle:"Rapor başarıyla gönderildi", successText:"Bilgileriniz veritabanına kaydedildi ve raporlar bölümüne yansıtıldı.", reportsTitle:"Raporlar", reportsSubtitle:"D1 veritabanından son 20 rapor ve ülke dağılımı", statReportsLabel:"Toplam rapor", statCountriesLabel:"Katılan ülkeler", statAmountLabel:"Toplam tutar (tahmini USD)", countryReportTitle:"Ülke raporu", countryReportSubtitle:"Etkileşimli ısı haritası: renk yoğunluğu toplamların tahmini USD değerini izler; bir ülkeye tıklayarak o ülkenin raporlarını filtreleyin.", recentReportsTitle:"Son 20 rapor", recentReportsSubtitle:"Veritabanına kaydedilen en son raporlar", tableCountry:"Ülke", tableCount:"Sayı", tableAmount:"Toplam tutar", footerText:'<a href="http://t.me/mohsenzadeh2" target="_blank" rel="noopener noreferrer">@mohsenzadeh2</a> tarafından geliştirildi; <a href="https://t.me/miuiraq" target="_blank" rel="noopener noreferrer">Al-Mustafa Uluslararası Üniversitesi - Irak Ofisi</a> gözetiminde', buildVersionLabel:"Yayın sürümü:", reportCountry:"Ülke", reportAmount:"Tutar", reportAgent:"Temsilci", reportTime:"Zaman", noReports:"Henüz rapor yok.", noNote:"Not yok", allCountries:"Ülke filtresi: Tümü", clearAll:"Tümünü göster", estimatedUsd:"Tahmini USD"}
 };
 
+Object.assign(baseFa, {
+  feature2Text:"نمایش اطلاعات واقعی چهار وکیل مستقل",
+  institutionChipAgents:"4 وکیل مستقل",
+  trust2Title:"چهار مسیر دریافت مستقل",
+  amountSubtitle:"هر چهار وکیل همه ارزها را می‌پذیرند.",
+  agent3Badge:"وکیل ۳", agent4Badge:"وکیل ۴",
+  agent3Desc:"هاتف، زين كاش مزدوج و البطاقة", agent4Desc:"هاتف مباشر و زين كاش"
+});
+Object.assign(baseEn, {
+  feature2Text:"Real details for four independent agents",
+  institutionChipAgents:"4 independent agents",
+  trust2Title:"Four independent receiving channels",
+  amountSubtitle:"All four agents accept all currencies.",
+  agent3Badge:"Agent 3", agent4Badge:"Agent 4",
+  agent3Desc:"Phone, dual ZainCash and card", agent4Desc:"Direct phone and ZainCash"
+});
+for (const [lang, patch] of Object.entries({
+  ar: { feature2Text:"عرض المعلومات الحقيقية لأربعة وكلاء مستقلين", institutionChipAgents:"4 وكلاء مستقلون", trust2Title:"أربع قنوات استلام مستقلة", amountSubtitle:"جميع الوكلاء الأربعة يقبلون كل العملات.", agent3Badge:"الوكيل 3", agent4Badge:"الوكيل 4", agent3Desc:"هاتف، زين كاش مزدوج والبطاقة", agent4Desc:"هاتف مباشر وزين كاش" },
+  ur: { feature2Text:"چار خودمختار وکلا کی حقیقی ادائیگی معلومات", institutionChipAgents:"4 آزاد وکلا", trust2Title:"وصولی کے چار آزاد راستے", amountSubtitle:"چاروں وکلا تمام کرنسیاں قبول کرتے ہیں۔", agent3Badge:"ایجنٹ 3", agent4Badge:"ایجنٹ 4", agent3Desc:"فون، دوہرا زین کیش اور کارڈ", agent4Desc:"براہ راست فون اور زین کیش" },
+  fr: { feature2Text:"Informations réelles de quatre agents indépendants", institutionChipAgents:"4 agents indépendants", trust2Title:"Quatre canaux de réception indépendants", amountSubtitle:"Les quatre agents acceptent toutes les devises.", agent3Badge:"Agent 3", agent4Badge:"Agent 4", agent3Desc:"Téléphone, double ZainCash et carte", agent4Desc:"Téléphone direct et ZainCash" },
+  de: { feature2Text:"Reale Zahlungsdaten von vier unabhängigen Vertretern", institutionChipAgents:"4 unabhängige Vertreter", trust2Title:"Vier unabhängige Empfangswege", amountSubtitle:"Alle vier Vertreter akzeptieren alle Währungen.", agent3Badge:"Agent 3", agent4Badge:"Agent 4", agent3Desc:"Telefon, doppeltes ZainCash und Karte", agent4Desc:"Direktes Telefon und ZainCash" },
+  es: { feature2Text:"Datos reales de pago de cuatro agentes independientes", institutionChipAgents:"4 agentes independientes", trust2Title:"Cuatro canales de recepción independientes", amountSubtitle:"Los cuatro agentes aceptan todas las monedas.", agent3Badge:"Agente 3", agent4Badge:"Agente 4", agent3Desc:"Teléfono, ZainCash doble y tarjeta", agent4Desc:"Teléfono directo y ZainCash" },
+  pt: { feature2Text:"Dados reais de pagamento de quatro agentes independentes", institutionChipAgents:"4 agentes independentes", trust2Title:"Quatro canais independentes de recebimento", amountSubtitle:"Os quatro agentes aceitam todas as moedas.", agent3Badge:"Agente 3", agent4Badge:"Agente 4", agent3Desc:"Telefone, ZainCash duplo e cartão", agent4Desc:"Telefone direto e ZainCash" },
+  tr: { feature2Text:"Dört bağımsız temsilci için gerçek ödeme bilgileri", institutionChipAgents:"4 bağımsız temsilci", trust2Title:"Dört bağımsız tahsilat kanalı", amountSubtitle:"Dört temsilcinin tamamı tüm para birimlerini kabul eder.", agent3Badge:"Temsilci 3", agent4Badge:"Temsilci 4", agent3Desc:"Telefon, çift ZainCash ve kart", agent4Desc:"Doğrudan telefon ve ZainCash" }
+})) Object.assign(i18n[lang], patch);
+
 const buildVersion = document.querySelector('meta[name="build-version"]')?.content || "";
 $("buildVersion").textContent = buildVersion;
 
@@ -84,7 +112,7 @@ let countryAmountMap = new Map();
 const reportDisplayInput = $("reportDisplayName");
 
 function normalizeName(name){ return String(name || "").trim().toLowerCase(); }
-function agentName(id){ return $(id===1 ? "agent1Name" : "agent2Name").textContent; }
+function agentName(id){ return $(`agent${id}Name`)?.textContent || `Agent ${id}`; }
 function estimatedUsd(amount, currency){ return Number(amount || 0) * (FX_USD_ESTIMATE[currency] || 1); }
 function localeFor(lang){ return lang === "fa" ? "fa-IR" : lang === "ar" ? "ar-IQ" : "en-US"; }
 function formatAmount(amount, currency){ return `${new Intl.NumberFormat(localeFor(currentLang)).format(amount)} ${currency}`; }
@@ -132,12 +160,16 @@ function renderAmounts(){
 
 function updatePaymentInfo(){
   const agent = agents[selectedAgent];
+  const masterCard = $("masterValue").closest(".info-card");
+  const masterButton = $("copyMasterBtn");
   $("selectedCurrency").textContent = getCurrencyLabel(selectedCurrency);
   $("selectedAmount").textContent = formatAmount(effectiveAmount(), selectedCurrency);
   $("selectedAgent").textContent = agentName(selectedAgent);
-  $("contactValue").textContent = agent.contact;
-  $("zainValue").textContent = agent.zain;
-  $("masterValue").textContent = agent.master;
+  $("contactValue").textContent = agent.contact || "—";
+  $("zainValue").textContent = agent.zain || "—";
+  $("masterValue").textContent = agent.master || "—";
+  if (masterCard) masterCard.style.display = agent.master ? "grid" : "none";
+  if (masterButton) masterButton.disabled = !agent.master;
   $("qrImage").src = agent.qr;
   $("qrImage").alt = agentName(selectedAgent);
   $("qrHint").textContent = i18n[currentLang].qrHint || "";
@@ -157,6 +189,14 @@ function initRevealAnimations(){
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   items.forEach(el => observer.observe(el));
 }
+
+$("qrImage").addEventListener("error", () => {
+  $("qrImage").style.display = "none";
+  $("qrHint").textContent = currentLang === "fa" ? "فایل QR این وکیل در پوشه qr یافت نشد." : (i18n[currentLang].qrHint || "QR not found.");
+});
+$("qrImage").addEventListener("load", () => {
+  $("qrImage").style.display = "block";
+});
 
 document.querySelectorAll(".currency-btn").forEach(btn => btn.onclick = () => {
   selectedCurrency = btn.dataset.currency;
