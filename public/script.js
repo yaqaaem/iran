@@ -102,7 +102,7 @@ for (const [lang, patch] of Object.entries({
 const buildVersion = document.querySelector('meta[name="build-version"]')?.content || "";
 $("buildVersion").textContent = buildVersion;
 
-let currentLang = "fa";
+let currentLang = "ar";
 let selectedCurrency = "USD";
 let selectedAmount = currencyPresets.USD[0];
 let selectedAgent = 1;
