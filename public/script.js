@@ -129,7 +129,7 @@ function updateCurrencyButtons(){
 function setPlaceholderField(el, value){ if (el) el.placeholder = value || ""; }
 
 function applyLanguage(lang){
-  currentLang = i18n[lang] ? lang : "fa";
+  currentLang = i18n[lang] ? lang : "ar";
   const t = i18n[currentLang];
   document.documentElement.lang = currentLang;
   document.documentElement.dir = t.dir;
@@ -441,7 +441,7 @@ $("reportForm").addEventListener("submit", async (e) => {
 function escapeHtml(value){ return String(value).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#39;"); }
 
 if (window.innerWidth > 760) { document.documentElement.classList.add("js-motion"); initRevealAnimations(); } else { document.querySelectorAll(".reveal-up").forEach(el => el.classList.add("is-visible")); }
-applyLanguage("fa");
+applyLanguage("ar");
 updatePaymentInfo();
 $("pageLoadedAt").value = String(Date.now());
 loadReports();
